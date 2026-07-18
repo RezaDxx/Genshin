@@ -1,0 +1,24 @@
+{
+  "current": {
+    "ar": 27,
+    "wl": 2,
+    "quest": "Chapter I Act III",
+    "resources": {
+      "primogem": 3894,
+      "mora": 150000,
+      "fragile_resin": 5,
+      "intertwined_fate": 0,
+      "acquaint_fate": 0
+    },
+    "exploration": {
+      "mondstadt": "42%",
+      "liyue": "17%",
+      "inazuma": "-"
+    },
+    "roster": [
+      {"name": "Traveler", "level": 50, "weapon_level": 50, "talents": "1/1/1"},
+      {"name": "Kaeya", "level": 40, "weapon_level": 40, "talents": "1/1/1"}
+    ]
+  },
+  "history": []
+}
