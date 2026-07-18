@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Genshin Journey Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <div>
+            <h1>Genshin Journey Tracker</h1>
+            <p>
+                Story First • Solo • Full F2P • Local Tracker
+            </p>
+        </div>
+
+        <div class="session-box">
+            <span>Current Session</span>
+            <strong id="currentDate">
+                --
+            </strong>
+        </div>
+
+    </header>
+
+
+    <!-- ===================================================== -->
+    <!-- CURRENT PROGRESS -->
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>Current Progress</h2>
+
+        <div class="grid-2">
+
+            <div class="field">
+                <label>Adventure Rank</label>
+                <input type="number" id="ar">
+            </div>
+
+            <div class="field">
+                <label>World Level</label>
+                <input type="number" id="wl">
+            </div>
+
+            <div class="field full">
+                <label>Archon Quest</label>
+                <input
+                    type="text"
+                    id="quest"
+                    placeholder="Chapter I Act III"
+                >
+            </div>
+
+        </div>
+
+        <h3>Regions</h3>
+
+        <div class="checkbox-grid">
+
+            <label><input type="checkbox"> Mondstadt</label>
+
+            <label><input type="checkbox"> Liyue</label>
+
+            <label><input type="checkbox"> Inazuma</label>
+
+            <label><input type="checkbox"> Sumeru</label>
+
+            <label><input type="checkbox"> Fontaine</label>
+
+            <label><input type="checkbox"> Natlan</label>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- RESOURCES -->
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>Resources</h2>
+
+        <div class="grid-3">
+
+            <div class="field">
+                <label>Primogem</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Mora</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Hero's Wit</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Resin</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Fragile Resin</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Acquaint Fate</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Intertwined Fate</label>
+                <input type="number">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- TEAM -->
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>Current Team</h2>
+
+        <div class="grid-2">
+
+            <input
+                type="text"
+                placeholder="Traveler"
+            >
+
+            <input
+                type="text"
+                placeholder="Kaeya"
+            >
+
+            <input
+                type="text"
+                placeholder="Xiangling"
+            >
+
+            <input
+                type="text"
+                placeholder="Barbara"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- CHARACTER DATABASE -->
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <div class="title-row">
+
+            <h2>Character Database</h2>
+
+            <button id="addCharacter">
+                + Add Character
+            </button>
+
+        </div>
+
+        <div id="characterContainer">
+
+            <!-- generated later -->
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- EXPLORATION -->
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>Exploration</h2>
+
+        <div class="grid-3">
+
+            <div class="field">
+                <label>Mondstadt %</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Liyue %</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Inazuma %</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Sumeru %</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Fontaine %</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Natlan %</label>
+                <input type="number">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SPIRAL ABYSS -->
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>Spiral Abyss</h2>
+
+        <div class="grid-2">
+
+            <div class="field">
+                <label>Floor</label>
+                <input type="number">
+            </div>
+
+            <div class="field">
+                <label>Chamber</label>
+                <input type="number">
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- DAILY -->
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>Daily Checklist</h2>
+
+        <div class="checkbox-grid">
+
+            <label><input type="checkbox"> Daily Commission</label>
+
+            <label><input type="checkbox"> Resin Used</label>
+
+            <label><input type="checkbox"> Expedition</label>
+
+            <label><input type="checkbox"> Reputation</label>
+
+            <label><input type="checkbox"> Weekly Boss</label>
+
+            <label><input type="checkbox"> Event</label>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- SCREENSHOT -->
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>Screenshots</h2>
+
+        <div class="drop-area">
+
+            <p>Drag & Drop Here</p>
+
+            <small>
+
+                Roster • Map • Quest • Wish
+
+            </small>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- NOTES -->
+    <!-- ===================================================== -->
+
+    <section class="card">
+
+        <h2>Session Notes</h2>
+
+        <textarea
+            rows="8"
+            placeholder="Anything important today..."
+        ></textarea>
+
+    </section>
+
+
+    <!-- ===================================================== -->
+    <!-- BUTTONS -->
+    <!-- ===================================================== -->
+
+    <section class="buttons">
+
+        <button>Save Session</button>
+
+        <button>Generate Report</button>
+
+        <button>Compare</button>
+
+        <button>Copy Report</button>
+
+        <button>Export JSON</button>
+
+        <button>Import JSON</button>
+
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
