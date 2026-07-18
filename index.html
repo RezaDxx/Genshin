@@ -7,71 +7,112 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
+    <div class="tracker-wrapper">
+        <header class="section-divider">
             <h1>Genshin Journey Tracker</h1>
-            <div class="io-buttons">
-                <input type="file" id="importFile" accept=".json" style="display:none">
-                <button onclick="document.getElementById('importFile').click()">Import JSON</button>
-                <button onclick="exportData()">Export JSON</button>
-            </div>
         </header>
 
-        <main class="grid-layout">
-            <!-- KIRI: Input & Status -->
-            <section class="panel">
-                <h2>Current Status</h2>
-                <div class="input-group-row">
-                    <label>AR <input type="number" id="ar" value="27"></label>
-                    <label>WL <input type="number" id="wl" value="2"></label>
-                </div>
-                <label>Main Quest
-                    <input type="text" id="quest" value="Chapter I Act III">
-                </label>
+        <!-- CURRENT PROGRESS -->
+        <section class="panel section-divider">
+            <h2>Current Progress</h2>
+            <div class="grid-2x2">
+                <label>AR <input type="number" id="ar" value="27"></label>
+                <label>WL <input type="number" id="wl" value="2"></label>
+                <label>Quest <input type="text" id="quest" value="Chapter I Act III"></label>
+                <label>Region <input type="text" id="current-region" value="Liyue"></label>
+            </div>
+        </section>
 
-                <h3>Resources</h3>
-                <div class="resource-grid">
-                    <label>Primo <input type="number" id="primo" value="3894"></label>
-                    <label>Mora <input type="number" id="mora" value="150000"></label>
-                    <label>Fragile <input type="number" id="fragile" value="5"></label>
-                </div>
+        <!-- RESOURCES -->
+        <section class="panel section-divider">
+            <h2>Resources</h2>
+            <div class="grid-3col">
+                <label>Primogem <input type="number" id="primo" value="3894"></label>
+                <label>Acquaint Fate <input type="number" id="acquaint" value="0"></label>
+                <label>Intertwined Fate <input type="number" id="intertwined" value="0"></label>
+                <label>Resin <input type="number" id="resin" value="160"></label>
+                <label>Fragile Resin <input type="number" id="fragile" value="5"></label>
+                <label>Mora <input type="number" id="mora" value="150000"></label>
+                <label>Hero's Wit <input type="number" id="herowit" value="20"></label>
+            </div>
+        </section>
 
-                <h3>Exploration</h3>
-                <div class="resource-grid">
-                    <label>Mondstadt <input type="text" id="exp-mondstadt" value="42%"></label>
-                    <label>Liyue <input type="text" id="exp-liyue" value="17%"></label>
-                </div>
-            </section>
+        <!-- CURRENT TEAM -->
+        <section class="panel section-divider">
+            <h2>Current Team</h2>
+            <div class="grid-4col">
+                <input type="text" id="team1" placeholder="Character 1" value="Traveler">
+                <input type="text" id="team2" placeholder="Character 2" value="Kaeya">
+                <input type="text" id="team3" placeholder="Character 3" value="Amber">
+                <input type="text" id="team4" placeholder="Character 4" value="Lisa">
+            </div>
+        </section>
 
-            <!-- TENGAH: Checklist & Roster -->
-            <section class="panel">
-                <h2>Daily Checklist</h2>
-                <div class="checklist">
-                    <label><input type="checkbox" id="todo-comm"> Daily Commission</label>
-                    <label><input type="checkbox" id="todo-resin"> Resin</label>
-                    <label><input type="checkbox" id="todo-exp"> Expedition</label>
-                    <label><input type="checkbox" id="todo-bp"> Battle Pass</label>
-                </div>
+        <!-- CHARACTERS -->
+        <section class="panel section-divider">
+            <h2>Characters</h2>
+            <div class="add-char-inline">
+                <input type="text" id="new-char-name" placeholder="Name">
+                <input type="number" id="new-char-level" placeholder="Level" value="1">
+                <input type="text" id="new-char-weapon" placeholder="Weapon Lv">
+                <input type="text" id="new-char-talent" placeholder="Talent (e.g. 1/1/1)" value="1/1/1">
+                <button type="button" onclick="addCharacter()">+ Add Character</button>
+            </div>
+            <div id="roster-list" class="roster-grid-header">
+                <!-- Roster items rendered here via JS -->
+            </div>
+        </section>
 
-                <h3>Roster</h3>
-                <div id="roster-list"></div>
-                <div class="add-char-form">
-                    <input type="text" id="new-char-name" placeholder="Char Name">
-                    <button onclick="addCharacter()">Add</button>
-                </div>
-            </section>
+        <!-- PROGRESS -->
+        <section class="panel section-divider">
+            <h2>Progress</h2>
+            <div class="abyss-row">
+                <label>Spiral Abyss <input type="text" id="abyss" value="Floor 4 Chamber 3"></label>
+            </div>
+            <h3>Exploration</h3>
+            <div class="grid-3col">
+                <label>Mondstadt <input type="text" id="exp-mondstadt" value="42%"></label>
+                <label>Liyue <input type="text" id="exp-liyue" value="17%"></label>
+                <label>Inazuma <input type="text" id="exp-inazuma" value="-"></label>
+                <label>Sumeru <input type="text" id="exp-sumeru" value="-"></label>
+                <label>Fontaine <input type="text" id="exp-fontaine" value="-"></label>
+                <label>Natlan <input type="text" id="exp-natlan" value="-"></label>
+            </div>
+        </section>
 
-            <!-- KANAN: Media & Analisis -->
-            <section class="panel flex-col">
-                <h2>Screenshots</h2>
-                <div id="drop-zone">Drag & Drop Image Here</div>
+        <!-- DAILY -->
+        <section class="panel section-divider">
+            <h2>Daily</h2>
+            <div class="checklist-grid">
+                <label><input type="checkbox" id="todo-comm"> Daily Commission</label>
+                <label><input type="checkbox" id="todo-resin"> Resin</label>
+                <label><input type="checkbox" id="todo-exp"> Expedition</label>
+                <label><input type="checkbox" id="todo-rep"> Reputation</label>
+                <label><input type="checkbox" id="todo-event"> Event</label>
+                <label><input type="checkbox" id="todo-boss"> Weekly Boss</label>
+            </div>
+        </section>
 
-                <h2>Actions</h2>
-                <button class="btn-primary" onclick="generateAnalysisPrompt()">Analyze with Nova</button>
-                <button class="btn-secondary" onclick="logSession()">Save Session</button>
-            </section>
-        </main>
+        <!-- OUTPUT AREA (Tempat Text Hasil Report/Compare Muncul) -->
+        <section class="panel section-divider" id="output-section" style="display:none;">
+            <h2>Text Output</h2>
+            <textarea id="text-output" readonly></textarea>
+        </section>
+
+        <!-- BUTTONS -->
+        <footer class="action-footer">
+            <div class="btn-group">
+                <button onclick="logSession()">Save</button>
+                <button onclick="generateReport()">Generate Report</button>
+                <button onclick="compareSessions()">Compare</button>
+                <button onclick="exportJSON()">Export JSON</button>
+                <button onclick="document.getElementById('importFile').click()">Import JSON</button>
+                <button onclick="copyReport()">Copy Report</button>
+            </div>
+            <input type="file" id="importFile" accept=".json" style="display:none">
+        </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
