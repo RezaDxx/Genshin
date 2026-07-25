@@ -266,6 +266,15 @@ Playstyle
 - No Artifact farming before AR45
 - Save Fragile Resin until AR45
 
+
+Account Rules
+-No Quick Start
+-No Weapon Banner
+-No Resin Refresh
+-No Artifact before AR45
+-No Character outside Core Team
+-No Primogem for Resin
+
 ━━━━━━━━━━━━━━━━
 NEXT MISSION
 ━━━━━━━━━━━━━━━━

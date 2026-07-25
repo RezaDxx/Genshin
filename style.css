@@ -1,195 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=JetBrains+Mono:wght@600;800&display=swap');
+
+/* --- NEOBRUTALISM THEME VARIABLES --- */
 [data-theme="dark"] {
-    --bg-color: #0b0e14;
-    --panel-bg: #141a24;
-    --border-color: #273244;
-    --text-main: #eceff4;
-    --text-muted: #8892a4;
-    --accent: #e5c158; /* Vision Gold */
-    --accent-hover: #f3d77e;
-    --card-bg: #1a2230;
-    --highlight: #4c8bf5; /* Primogem Blue */
+    --bg-color: #121212;
+    --panel-bg: #1e1e1e;
+    --card-bg: #282828;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --border-color: #000000;
+    --accent: #ffde59;       /* Bright Tactical Yellow */
+    --accent-hover: #ffe57d;
+    --highlight: #ff5757;    /* Vibrant Red/Pink */
+    --secondary: #5ce1e6;    /* Cyan */
+    --shadow-color: #000000;
 }
 
 [data-theme="light"] {
-    --bg-color: #f0f2f5;
+    --bg-color: #f4f0ea;     /* Warm Brutalist Off-White */
     --panel-bg: #ffffff;
-    --border-color: #d1d5db;
-    --text-main: #1f2937;
-    --text-muted: #6b7280;
-    --accent: #cb9b18; 
-    --accent-hover: #b2850f;
-    --card-bg: #f8fafc;
-    --highlight: #2563eb;
+    --card-bg: #f9f9f9;
+    --text-main: #000000;
+    --text-muted: #4a4a4a;
+    --border-color: #000000;
+    --accent: #ffde59;
+    --accent-hover: #ebd04f;
+    --highlight: #ff6b6b;
+    --secondary: #7bf1a8;
+    --shadow-color: #000000;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
     font-size: 13px;
-    padding: 20px 15px;
-    transition: background-color 0.3s, color 0.3s;
+    padding: 24px 16px;
+    transition: background-color 0.2s;
 }
 
 .tracker-wrapper {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
 }
 
+/* --- HEADER --- */
 .header-banner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    background: var(--accent);
+    border: 3px solid var(--border-color);
+    padding: 12px 18px;
+    margin-bottom: 24px;
+    box-shadow: 5px 5px 0px var(--shadow-color);
 }
 
 h1 {
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 800;
     margin: 0;
-    color: var(--accent);
-    letter-spacing: 0.5px;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
 }
 
+/* --- PANELS & CARDS --- */
 .panel {
     background: var(--panel-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    padding: 16px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 3px solid var(--border-color);
+    border-radius: 0px; /* Neobrutalism prioritizes sharp edges */
+    padding: 18px;
+    margin-bottom: 20px;
+    box-shadow: 5px 5px 0px var(--shadow-color);
 }
 
 .highlight-panel {
-    border: 1px solid var(--accent);
-    background: var(--card-bg);
+    background: var(--panel-bg);
+    border: 3px solid var(--border-color);
+    box-shadow: 7px 7px 0px var(--highlight);
 }
 
 h2 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--highlight);
-    margin: 0 0 12px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #000000;
+    background: var(--secondary);
+    display: inline-block;
+    padding: 4px 8px;
+    border: 2px solid var(--border-color);
+    margin: 0 0 14px 0;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-left: 3px solid var(--accent);
-    padding-left: 8px;
+    box-shadow: 2px 2px 0px var(--shadow-color);
+}
+
+.highlight-panel h2 {
+    background: var(--highlight);
+    color: #ffffff;
 }
 
 h3 {
     font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    margin: 10px 0 6px 0;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 14px 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.grid-1col { display: grid; grid-template-columns: 1fr; gap: 8px; }
-.grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.grid-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.grid-4col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+/* --- GRIDS & FORM ELEMENTS --- */
+.grid-1col { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.grid-4col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .grid-span-2 { grid-column: span 2; }
 
 label {
     display: flex;
     flex-direction: column;
-    color: var(--text-muted);
+    color: var(--text-main);
     font-size: 11px;
-    gap: 3px;
+    font-weight: 700;
+    gap: 4px;
+    text-transform: uppercase;
 }
 
 input[type="text"], input[type="number"], select, textarea {
-    background: var(--panel-bg);
-    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
     color: var(--text-main);
-    padding: 6px 8px;
-    border-radius: 4px;
+    padding: 8px 10px;
+    border-radius: 0px;
     font-size: 12px;
-    font-family: inherit;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    transition: transform 0.1s, box-shadow 0.1s;
 }
 
 input:focus, select:focus, textarea:focus {
     outline: none;
-    border-color: var(--accent);
+    background: var(--panel-bg);
+    box-shadow: 3px 3px 0px var(--shadow-color);
+    transform: translate(-2px, -2px);
 }
 
+/* --- ADD BLOCKS & LISTS --- */
 .add-char-block {
     background: var(--card-bg);
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    margin-bottom: 12px;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    margin-bottom: 14px;
 }
 
 .roster-list-container {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    max-height: 250px;
+    gap: 8px;
+    max-height: 280px;
     overflow-y: auto;
 }
 
 .char-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    padding: 8px 12px;
-    border-radius: 4px;
+    background: var(--panel-bg);
+    border: 2px solid var(--border-color);
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 11px;
+    box-shadow: 3px 3px 0px var(--shadow-color);
 }
 
+/* --- BUTTONS & FOOTER --- */
 .action-footer {
-    margin-top: 20px;
+    margin-top: 28px;
 }
 
 .btn-group {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 10px;
 }
 
 button {
     background: var(--panel-bg);
-    border: 1px solid var(--border-color);
+    border: 2px solid var(--border-color);
     color: var(--text-main);
-    padding: 8px 12px;
-    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 800;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
     cursor: pointer;
-    font-size: 12px;
-    font-weight: 500;
-    transition: all 0.2s;
+    box-shadow: 3px 3px 0px var(--shadow-color);
+    transition: all 0.1s;
 }
 
 button:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px var(--shadow-color);
+}
+
+button:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px var(--shadow-color);
 }
 
 button.btn-accent {
     background: var(--accent);
-    color: #0b0e14;
-    border: none;
-    font-weight: 600;
+    color: #000000;
 }
 
-button.btn-accent:hover {
-    background: var(--accent-hover);
-    color: #0b0e14;
+#theme-toggle {
+    background: #000000;
+    color: #ffffff;
+    border: 2px solid #000000;
+    box-shadow: 2px 2px 0px var(--panel-bg);
 }
 
+/* --- OUTPUT TEXTAREA --- */
 textarea#text-output {
     width: 100%;
-    height: 380px;
-    background: var(--bg-color);
-    border: 1px solid var(--border-color);
+    height: 400px;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
     color: var(--text-main);
-    font-family: monospace;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    padding: 10px;
+    padding: 12px;
     box-sizing: border-box;
     white-space: pre;
     resize: vertical;
