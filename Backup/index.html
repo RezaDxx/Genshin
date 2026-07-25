@@ -26,24 +26,11 @@
             <div class="grid-1col" style="margin-top: 8px;">
                 <label>Archon Quest <input type="text" id="archon-quest" value="Chapter I Act IV"></label>
                 <label>Story Quest <input type="text" id="story-quest" value="-"></label>
-                <label>Active World Quest Count <input type="number" id="world-quest-count" value="3"></label>
-                <label>Important World Quests <textarea id="world-quest-important" rows="2" placeholder="Aranyaka, Golden Slumber, Sacred Sakura Cleverness"></textarea></label>
+                <label>World Quest <input type="text" id="world-quest" value="-"></label>
             </div>
         </section>
 
-        <!-- WISH SYSTEM -->
-        <section class="panel">
-            <h2>Wish & Pity History</h2>
-            <div class="grid-2col">
-                <label>Char Banner Pity <input type="number" id="pity-char" value="0"></label>
-                <label>Char Banner Guaranteed <select id="guaranteed-char"><option value="No">No</option><option value="Yes">Yes</option></select></label>
-                <label>Last 5★ Char Banner <input type="text" id="last-5star-char" placeholder="e.g. Jean"></label>
-                <label>Standard Banner Pity <input type="number" id="pity-standard" value="0"></label>
-                <label class="grid-span-2">Last 5★ Standard Banner <input type="text" id="last-5star-standard" placeholder="e.g. Amos Bow"></label>
-            </div>
-        </section>
-
-        <!-- RESOURCES & BILLETS -->
+        <!-- RESOURCES -->
         <section class="panel">
             <h2>Resources</h2>
             <div class="grid-3col">
@@ -59,61 +46,40 @@
                 <label>Dream Solvent <input type="number" id="dream-solvent" value="0"></label>
                 <label>Crown <input type="number" id="crown" value="0"></label>
             </div>
-
-            <h3 style="margin-top: 12px;">Crafting Billets</h3>
-            <div class="grid-2col">
-                <label>Sword Billet (North / Mid) <input type="text" id="billet-sword" value="0 / 0"></label>
-                <label>Claymore Billet (North / Mid) <input type="text" id="billet-claymore" value="0 / 0"></label>
-                <label>Polearm Billet (North / Mid) <input type="text" id="billet-polearm" value="0 / 0"></label>
-                <label>Bow Billet (North / Mid) <input type="text" id="billet-bow" value="0 / 0"></label>
-                <label class="grid-span-2">Catalyst Billet (North / Mid) <input type="text" id="billet-catalyst" value="0 / 0"></label>
-            </div>
         </section>
 
-        <!-- CURRENT PARTY BUILD -->
+        <!-- CURRENT PARTY -->
         <section class="panel">
-            <h2>Current Party (Detailed Build)</h2>
-            <div class="grid-4col" style="margin-bottom: 12px;">
+            <h2>Current Party</h2>
+            <div class="grid-4col">
                 <input type="text" id="team1" list="char-suggestions" placeholder="Slot 1" value="Traveler">
                 <input type="text" id="team2" list="char-suggestions" placeholder="Slot 2" value="Xiangling">
                 <input type="text" id="team3" list="char-suggestions" placeholder="Slot 3" value="Kaeya">
                 <input type="text" id="team4" list="char-suggestions" placeholder="Slot 4" value="Barbara">
             </div>
-
-            <div class="add-char-block">
-                <div class="grid-3col">
-                    <label>Name <input type="text" id="cp-name" list="char-suggestions" placeholder="Name"></label>
-                    <label>Level <input type="number" id="cp-level" value="60"></label>
-                    <label>Constellation <input type="text" id="cp-const" value="C0"></label>
-                    <label>Friendship <input type="number" id="cp-friend" value="1"></label>
-                    <label>Weapon <input type="text" id="cp-weapon" placeholder="Slingshot R4 Lv60"></label>
-                    <label>Artifact <input type="text" id="cp-artifact" value="Temporary"></label>
-                </div>
-                <div class="grid-3col" style="margin-top: 8px;">
-                    <label>Normal Attack <input type="number" id="cp-t-norm" value="1"></label>
-                    <label>Skill <input type="number" id="cp-t-skill" value="1"></label>
-                    <label>Burst <input type="number" id="cp-t-burst" value="1"></label>
-                </div>
-                <button type="button" class="btn-accent" style="margin-top: 8px; width: 100%;" onclick="addPartyDetail()">Update Active Party Build</button>
-            </div>
-            <div id="party-build-list" class="roster-list-container"></div>
         </section>
 
-        <!-- FULL ROSTER -->
+        <!-- CHARACTERS -->
         <section class="panel">
-            <h2>Full Roster (Simple Ownership List)</h2>
+            <h2>Characters</h2>
             <div class="add-char-block">
                 <div class="grid-3col">
-                    <label>Character Name
-                        <input type="text" id="c-name" list="char-suggestions" placeholder="Select/Type Name">
+                    <label>Name
+                        <input type="text" id="c-name" list="char-suggestions" placeholder="Select/Type Name" onchange="autoFillCharDefaults(this.value)">
                     </label>
-                    <label>Level <input type="number" id="c-level" value="50"></label>
+                    <label>Level <input type="number" id="c-level" value="60"></label>
                     <label>Constellation <input type="text" id="c-const" value="C0"></label>
+                    <label>Friendship <input type="number" id="c-friend" value="1"></label>
+                    <label>Weapon <input type="text" id="c-weapon" placeholder="Slingshot R4 Lv60"></label>
+                    <label>Talent <input type="text" id="c-talent" value="1/1/1"></label>
                 </div>
-                <button type="button" class="btn-accent" style="margin-top: 8px; width: 100%;" onclick="addCharacter()">+ Add to Roster</button>
+                <div class="grid-2col" style="margin-top: 8px;">
+                    <label>Artifact <input type="text" id="c-artifact" value="Temporary"></label>
+                    <button type="button" class="btn-accent" onclick="addCharacter()">+ Add Character</button>
+                </div>
             </div>
 
-            <!-- Datalist Autocomplete -->
+            <!-- Datalist untuk Autocomplete Karakter -->
             <datalist id="char-suggestions">
                 <option value="Traveler"><option value="Amber"><option value="Kaeya"><option value="Lisa">
                 <option value="Barbara"><option value="Xiangling"><option value="Noelle"><option value="Fischl">

@@ -1,28 +1,7 @@
 let appData = {
-    account: { 
-        ar: 31, wl: 3, server: "Asia", birthday: "-", region: "Nod Krai", 
-        archon_quest: "Chapter I Act IV", story_quest: "-", 
-        world_quest_count: 3, world_quest_important: "Aranyaka, Golden Slumber" 
-    },
-    wish: {
-        pity_char: 0,
-        guaranteed_char: "No",
-        last_5star_char: "None",
-        pity_standard: 0,
-        last_5star_standard: "None"
-    },
-    resources: { 
-        primo: 4699, genesis: 0, intertwined: 8, acquaint: 1, resin: 99, fragile: 22, mora: 841556, herowit: 37, mystic_ore: 100, dream_solvent: 0, crown: 0 
-    },
-    billets: {
-        sword: "0 / 0",
-        claymore: "0 / 0",
-        polearm: "0 / 0",
-        bow: "0 / 0",
-        catalyst: "0 / 0"
-    },
+    account: { ar: 31, wl: 3, server: "Asia", birthday: "-", region: "Nod Krai", archon_quest: "Chapter I Act IV", story_quest: "-", world_quest: "-" },
+    resources: { primo: 4699, genesis: 0, intertwined: 8, acquaint: 1, resin: 99, fragile: 22, mora: 841556, herowit: 37, mystic_ore: 100, dream_solvent: 0, crown: 0 },
     party: ["Traveler", "Xiangling", "Kaeya", "Barbara"],
-    partyDetails: [],
     roster: [],
     weapons: { star5: "None", star4: "Favonius Sword R2 Lv50\nFavonius Warbow R1 Lv50", star3: "Slingshot R4\nTTDS R4" },
     exploration: { mondstadt: "38%", liyue: "10%", dragonspine: "0%", inazuma: "0%", enkanomiya: "0%", chasm: "0%", sumeru: "0%", fontaine: "0%", chenyu: "0%", remuria: "0%", natlan: "0%", nodkrai: "0%" },
@@ -51,6 +30,15 @@ function toggleTheme() {
     }
 }
 
+function autoFillCharDefaults(charName) {
+    if (!charName) return;
+    // Setel default terprediksi jika belum diisi
+    document.getElementById('c-level').value = 50;
+    document.getElementById('c-const').value = "C0";
+    document.getElementById('c-talent').value = "1/1/1";
+    document.getElementById('c-artifact').value = "Temporary";
+}
+
 function updateDataFromUI() {
     // Account
     appData.account.ar = parseInt(document.getElementById('ar').value) || 0;
@@ -60,15 +48,7 @@ function updateDataFromUI() {
     appData.account.region = document.getElementById('current-region').value;
     appData.account.archon_quest = document.getElementById('archon-quest').value;
     appData.account.story_quest = document.getElementById('story-quest').value;
-    appData.account.world_quest_count = parseInt(document.getElementById('world-quest-count').value) || 0;
-    appData.account.world_quest_important = document.getElementById('world-quest-important').value;
-
-    // Wish
-    appData.wish.pity_char = parseInt(document.getElementById('pity-char').value) || 0;
-    appData.wish.guaranteed_char = document.getElementById('guaranteed-char').value;
-    appData.wish.last_5star_char = document.getElementById('last-5star-char').value || "None";
-    appData.wish.pity_standard = parseInt(document.getElementById('pity-standard').value) || 0;
-    appData.wish.last_5star_standard = document.getElementById('last-5star-standard').value || "None";
+    appData.account.world_quest = document.getElementById('world-quest').value;
 
     // Resources
     appData.resources.primo = parseInt(document.getElementById('primo').value) || 0;
@@ -82,13 +62,6 @@ function updateDataFromUI() {
     appData.resources.mystic_ore = parseInt(document.getElementById('mystic-ore').value) || 0;
     appData.resources.dream_solvent = parseInt(document.getElementById('dream-solvent').value) || 0;
     appData.resources.crown = parseInt(document.getElementById('crown').value) || 0;
-
-    // Billets
-    appData.billets.sword = document.getElementById('billet-sword').value;
-    appData.billets.claymore = document.getElementById('billet-claymore').value;
-    appData.billets.polearm = document.getElementById('billet-polearm').value;
-    appData.billets.bow = document.getElementById('billet-bow').value;
-    appData.billets.catalyst = document.getElementById('billet-catalyst').value;
 
     // Party
     appData.party = [
@@ -156,45 +129,6 @@ function updateDataFromUI() {
     appData.goals.long = document.getElementById('goal-long').value;
 }
 
-function addPartyDetail() {
-    const name = document.getElementById('cp-name').value;
-    if (!name) return;
-
-    const norm = document.getElementById('cp-t-norm').value || "1";
-    const skill = document.getElementById('cp-t-skill').value || "1";
-    const burst = document.getElementById('cp-t-burst').value || "1";
-
-    appData.partyDetails.push({
-        name: name,
-        level: parseInt(document.getElementById('cp-level').value) || 1,
-        constellation: document.getElementById('cp-const').value || "C0",
-        friendship: parseInt(document.getElementById('cp-friend').value) || 1,
-        weapon: document.getElementById('cp-weapon').value || "-",
-        talent: `${norm} / ${skill} / ${burst}`,
-        artifact: document.getElementById('cp-artifact').value || "Temporary"
-    });
-
-    document.getElementById('cp-name').value = '';
-    renderPartyDetails();
-}
-
-function renderPartyDetails() {
-    const list = document.getElementById('party-build-list');
-    list.innerHTML = '';
-    appData.partyDetails.forEach((c, index) => {
-        const div = document.createElement('div');
-        div.className = 'char-card';
-        div.innerHTML = `
-            <div>
-                <strong>${c.name}</strong> (Lv${c.level} ${c.constellation})<br>
-                <span style="color:var(--text-muted)">Wpn: ${c.weapon} | Talent: ${c.talent}</span>
-            </div>
-            <button type="button" style="padding:2px 6px; color:#f38ba8; border:none; background:none; cursor:pointer;" onclick="appData.partyDetails.splice(${index},1); renderPartyDetails();">✕ Delete</button>
-        `;
-        list.appendChild(div);
-    });
-}
-
 function addCharacter() {
     const name = document.getElementById('c-name').value;
     if (!name) return;
@@ -202,10 +136,20 @@ function addCharacter() {
     appData.roster.push({
         name: name,
         level: parseInt(document.getElementById('c-level').value) || 1,
-        constellation: document.getElementById('c-const').value || "C0"
+        constellation: document.getElementById('c-const').value || "C0",
+        friendship: parseInt(document.getElementById('c-friend').value) || 1,
+        weapon: document.getElementById('c-weapon').value || "-",
+        talent: document.getElementById('c-talent').value || "1/1/1",
+        artifact: document.getElementById('c-artifact').value || "Temporary"
     });
 
     document.getElementById('c-name').value = '';
+    document.getElementById('c-weapon').value = '';
+    renderRoster();
+}
+
+function removeCharacter(index) {
+    appData.roster.splice(index, 1);
     renderRoster();
 }
 
@@ -217,9 +161,10 @@ function renderRoster() {
         div.className = 'char-card';
         div.innerHTML = `
             <div>
-                <strong>${c.name}</strong> Lv${c.level} ${c.constellation}
+                <strong>${c.name}</strong> (Lv${c.level} ${c.constellation})<br>
+                <span style="color:var(--text-muted)">Wpn: ${c.weapon} | Talent: ${c.talent}</span>
             </div>
-            <button type="button" style="padding:2px 6px; color:#f38ba8; border:none; background:none; cursor:pointer;" onclick="appData.roster.splice(${index},1); renderRoster();">✕ Delete</button>
+            <button type="button" style="padding:2px 6px; color:#f38ba8; border:none; background:none; cursor:pointer;" onclick="removeCharacter(${index})">✕ Delete</button>
         `;
         list.appendChild(div);
     });
@@ -228,16 +173,12 @@ function renderRoster() {
 function generateReport() {
     updateDataFromUI();
     const acc = appData.account;
-    const wsh = appData.wish;
     const res = appData.resources;
-    const blt = appData.billets;
     const exp = appData.exploration;
     const prog = appData.progression;
     const wkl = appData.weekly;
 
-    let rosterStr = appData.roster.map(c => `${c.name} Lv${c.level} ${c.constellation}`).join('\n');
-
-    let partyStr = appData.partyDetails.map(c => 
+    let charStr = appData.roster.map(c => 
 `${c.name}
 Lv${c.level}
 ${c.constellation}
@@ -277,20 +218,9 @@ Birthday: ${acc.birthday}
 
 Current Archon Quest: ${acc.archon_quest}
 Current Story Quest: ${acc.story_quest}
-Active World Quest Count: ${acc.world_quest_count}
-Important World Quests: ${acc.world_quest_important}
+Current World Quest: ${acc.world_quest}
 
 Current Region: ${acc.region}
-
-━━━━━━━━━━━━━━━━
-WISH
-━━━━━━━━━━━━━━━━
-
-Character Banner Pity: ${wsh.pity_char}
-Character Banner Guaranteed: ${wsh.guaranteed_char}
-Last 5★ Character: ${wsh.last_5star_char}
-Standard Banner Pity: ${wsh.pity_standard}
-Last 5★ Standard Character: ${wsh.last_5star_standard}
 
 ━━━━━━━━━━━━━━━━
 RESOURCES
@@ -313,17 +243,7 @@ Dream Solvent: ${res.dream_solvent}
 Crown: ${res.crown}
 
 ━━━━━━━━━━━━━━━━
-BILLETS (Northlander / Midlander)
-━━━━━━━━━━━━━━━━
-
-Sword Billet: ${blt.sword}
-Claymore Billet: ${blt.claymore}
-Polearm Billet: ${blt.polearm}
-Bow Billet: ${blt.bow}
-Catalyst Billet: ${blt.catalyst}
-
-━━━━━━━━━━━━━━━━
-CURRENT PARTY (Detailed Build)
+CURRENT PARTY
 ━━━━━━━━━━━━━━━━
 
 1. ${appData.party[0]}
@@ -331,13 +251,11 @@ CURRENT PARTY (Detailed Build)
 3. ${appData.party[2]}
 4. ${appData.party[3]}
 
-${partyStr ? 'Details:\n' + partyStr : ''}
-
 ━━━━━━━━━━━━━━━━
-ROSTER
+CHARACTERS
 ━━━━━━━━━━━━━━━━
 
-${rosterStr || 'None'}
+${charStr || 'None'}
 
 ━━━━━━━━━━━━━━━━
 WEAPONS
@@ -354,6 +272,22 @@ ${appData.weapons.star4 || 'None'}
 3★
 
 ${appData.weapons.star3 || 'None'}
+
+━━━━━━━━━━━━━━━━
+STORY
+━━━━━━━━━━━━━━━━
+
+Archon Quest
+
+${acc.archon_quest}
+
+Story Quest
+
+${acc.story_quest}
+
+Hangout
+
+None
 
 ━━━━━━━━━━━━━━━━
 EXPLORATION
@@ -430,7 +364,23 @@ ${appData.goals.medium}
 
 Long Goal
 
-${appData.goals.long}`;
+${appData.goals.long}
+
+━━━━━━━━━━━━━━━━
+QUESTIONS
+━━━━━━━━━━━━━━━━
+
+Analyze
+
+- Efficiency
+- Mistakes
+- Resin Priority
+- Build Priority
+- Story Priority
+- Pull Recommendation
+- Next Objective
+- Medium Target
+- Long Target`;
 
     showOutput(prompt);
 }
@@ -438,21 +388,21 @@ ${appData.goals.long}`;
 function logSession() {
     updateDataFromUI();
     appData.history.push(JSON.parse(JSON.stringify(appData)));
-    alert("Session saved!");
+    alert("Session saved to local history!");
 }
 
 function compareSessions() {
     if (appData.history.length < 2) {
-        showOutput("Save at least 2 sessions to compare.");
+        showOutput("Save at least 2 sessions to run comparison.");
         return;
     }
     const prev = appData.history[appData.history.length - 2];
     const curr = appData.history[appData.history.length - 1];
 
-    let diff = `=== COMPARISON ===\n`;
-    diff += `AR: ${prev.account.ar} → ${curr.account.ar}\n`;
-    diff += `Primogems: ${prev.resources.primo} → ${curr.resources.primo}\n`;
-    diff += `Char Pity: ${prev.wish.pity_char} → ${curr.wish.pity_char}\n`;
+    let diff = `=== SESSION COMPARISON ===\n`;
+    diff += `AR: ${prev.account.ar} → ${curr.account.ar} (${(curr.account.ar - prev.account.ar) >= 0 ? '+' : ''}${curr.account.ar - prev.account.ar})\n`;
+    diff += `Primogems: ${prev.resources.primo} → ${curr.resources.primo} (${(curr.resources.primo - prev.resources.primo) >= 0 ? '+' : ''}${curr.resources.primo - prev.resources.primo})\n`;
+    diff += `Archon Quest: ${prev.account.archon_quest} → ${curr.account.archon_quest}\n`;
 
     showOutput(diff);
 }
@@ -476,7 +426,7 @@ function setupImportListener() {
         const reader = new FileReader();
         reader.onload = function(event) {
             appData = JSON.parse(event.target.result);
-            alert("Data loaded successfully!");
+            loadDataToUI();
         };
         reader.readAsText(e.target.files[0]);
     });
@@ -488,7 +438,7 @@ function exportJSON() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'genshin_account_state.json';
+    a.download = 'progress.json';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
