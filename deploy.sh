@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Masuk ke direktori (memastikan script berjalan di tempat yang benar)
-cd /home/larzy/Documents/genshin
+cd /home/larzy/Documents/CODING/genshin/
 
 # Cek status git
 git add .

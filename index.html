@@ -12,14 +12,20 @@
             <h1>Genshin Journey Tracker</h1>
         </header>
 
-        <!-- CURRENT PROGRESS -->
+        <!-- ACCOUNT -->
         <section class="panel section-divider">
-            <h2>Current Progress</h2>
-            <div class="grid-2x2">
-                <label>AR <input type="number" id="ar" value="27"></label>
-                <label>WL <input type="number" id="wl" value="2"></label>
-                <label>Quest <input type="text" id="quest" value="Chapter I Act III"></label>
-                <label>Region <input type="text" id="current-region" value="Liyue"></label>
+            <h2>Account</h2>
+            <div class="grid-3col">
+                <label>AR <input type="number" id="ar" value="31"></label>
+                <label>WL <input type="number" id="wl" value="3"></label>
+                <label>Server <input type="text" id="server" value="Asia"></label>
+                <label>Birthday <input type="text" id="birthday" value="-"></label>
+                <label>Current Region <input type="text" id="current-region" value="Nod Krai"></label>
+            </div>
+            <div class="grid-1col" style="margin-top: 10px;">
+                <label>Archon Quest <input type="text" id="archon-quest" value="Chapter I Act IV"></label>
+                <label>Story Quest <input type="text" id="story-quest" value="-"></label>
+                <label>World Quest <input type="text" id="world-quest" value="-"></label>
             </div>
         </section>
 
@@ -27,73 +33,109 @@
         <section class="panel section-divider">
             <h2>Resources</h2>
             <div class="grid-3col">
-                <label>Primogem <input type="number" id="primo" value="3894"></label>
-                <label>Acquaint Fate <input type="number" id="acquaint" value="0"></label>
-                <label>Intertwined Fate <input type="number" id="intertwined" value="0"></label>
-                <label>Resin <input type="number" id="resin" value="160"></label>
-                <label>Fragile Resin <input type="number" id="fragile" value="5"></label>
-                <label>Mora <input type="number" id="mora" value="150000"></label>
-                <label>Hero's Wit <input type="number" id="herowit" value="20"></label>
+                <label>Primogem <input type="number" id="primo" value="4699"></label>
+                <label>Genesis Crystal <input type="number" id="genesis" value="0"></label>
+                <label>Intertwined Fate <input type="number" id="intertwined" value="8"></label>
+                <label>Acquaint Fate <input type="number" id="acquaint" value="1"></label>
+                <label>Original Resin <input type="number" id="resin" value="99"></label>
+                <label>Fragile Resin <input type="number" id="fragile" value="22"></label>
+                <label>Mora <input type="number" id="mora" value="841556"></label>
+                <label>Hero's Wit <input type="number" id="herowit" value="37"></label>
+                <label>Mystic Ore <input type="number" id="mystic-ore" value="100"></label>
+                <label>Dream Solvent <input type="number" id="dream-solvent" value="0"></label>
+                <label>Crown <input type="number" id="crown" value="0"></label>
             </div>
         </section>
 
-        <!-- CURRENT TEAM -->
+        <!-- CURRENT PARTY -->
         <section class="panel section-divider">
-            <h2>Current Team</h2>
+            <h2>Current Party</h2>
             <div class="grid-4col">
-                <input type="text" id="team1" placeholder="Character 1" value="Traveler">
-                <input type="text" id="team2" placeholder="Character 2" value="Kaeya">
-                <input type="text" id="team3" placeholder="Character 3" value="Amber">
-                <input type="text" id="team4" placeholder="Character 4" value="Lisa">
+                <input type="text" id="team1" placeholder="Slot 1" value="Traveler">
+                <input type="text" id="team2" placeholder="Slot 2" value="Xianling">
+                <input type="text" id="team3" placeholder="Slot 3" value="Kaeya">
+                <input type="text" id="team4" placeholder="Slot 4" value="Barbara">
             </div>
         </section>
 
         <!-- CHARACTERS -->
         <section class="panel section-divider">
             <h2>Characters</h2>
-            <div class="add-char-inline">
-                <input type="text" id="new-char-name" placeholder="Name">
-                <input type="number" id="new-char-level" placeholder="Level" value="1">
-                <input type="text" id="new-char-weapon" placeholder="Weapon Lv">
-                <input type="text" id="new-char-talent" placeholder="Talent (e.g. 1/1/1)" value="1/1/1">
-                <button type="button" onclick="addCharacter()">+ Add Character</button>
+            <div class="add-char-block">
+                <div class="grid-3col">
+                    <input type="text" id="c-name" placeholder="Name (e.g. Tighnari)">
+                    <input type="number" id="c-level" placeholder="Level" value="60">
+                    <input type="text" id="c-const" placeholder="Constellation (e.g. C0)" value="C0">
+                    <input type="number" id="c-friend" placeholder="Friendship Lv" value="1">
+                    <input type="text" id="c-weapon" placeholder="Weapon (e.g. Slingshot R4 Lv60)">
+                    <input type="text" id="c-talent" placeholder="Talent (e.g. 2/2/2)" value="1/1/1">
+                </div>
+                <div class="grid-2col" style="margin-top: 8px;">
+                    <input type="text" id="c-artifact" placeholder="Artifact (e.g. Temporary)" value="Temporary">
+                    <button type="button" onclick="addCharacter()">+ Add Character</button>
+                </div>
             </div>
-            <div id="roster-list" class="roster-grid-header">
-                <!-- Roster items rendered here via JS -->
+            <div id="roster-list" class="roster-list-container"></div>
+        </section>
+
+        <!-- WEAPONS -->
+        <section class="panel section-divider">
+            <h2>Weapons Inventory</h2>
+            <div class="grid-1col">
+                <label>5★ Weapons <textarea id="wpn-5star" rows="2" placeholder="None"></textarea></label>
+                <label>4★ Weapons <textarea id="wpn-4star" rows="3" placeholder="Favonius Sword R2 Lv50..."></textarea></label>
+                <label>3★ Weapons <textarea id="wpn-3star" rows="3" placeholder="Slingshot R4..."></textarea></label>
             </div>
         </section>
 
-        <!-- PROGRESS -->
+        <!-- EXPLORATION & PROGRESSION -->
         <section class="panel section-divider">
-            <h2>Progress</h2>
-            <div class="abyss-row">
-                <label>Spiral Abyss <input type="text" id="abyss" value="Floor 4 Chamber 3"></label>
-            </div>
-            <h3>Exploration</h3>
+            <h2>Exploration & Progression</h2>
+            <h3>Exploration (%)</h3>
             <div class="grid-3col">
-                <label>Mondstadt <input type="text" id="exp-mondstadt" value="42%"></label>
-                <label>Liyue <input type="text" id="exp-liyue" value="17%"></label>
-                <label>Inazuma <input type="text" id="exp-inazuma" value="-"></label>
-                <label>Sumeru <input type="text" id="exp-sumeru" value="-"></label>
-                <label>Fontaine <input type="text" id="exp-fontaine" value="-"></label>
-                <label>Natlan <input type="text" id="exp-natlan" value="-"></label>
+                <label>Mondstadt <input type="text" id="exp-mondstadt" value="38%"></label>
+                <label>Liyue <input type="text" id="exp-liyue" value="10%"></label>
+                <label>Inazuma <input type="text" id="exp-inazuma" value="0%"></label>
+                <label>Sumeru <input type="text" id="exp-sumeru" value="0%"></label>
+                <label>Fontaine <input type="text" id="exp-fontaine" value="0%"></label>
+                <label>Natlan <input type="text" id="exp-natlan" value="0%"></label>
+            </div>
+            <h3>Statues & Abyss</h3>
+            <div class="grid-3col">
+                <label>Spiral Abyss <input type="text" id="abyss" value="Floor 3 Chamber 3"></label>
+                <label>Statue Mondstadt <input type="text" id="statue-mond" value="7/7"></label>
+                <label>Statue Liyue <input type="text" id="statue-liyue" value="5/5"></label>
+                <label>Statue Sumeru <input type="text" id="statue-sumeru" value="1/7"></label>
             </div>
         </section>
 
-        <!-- DAILY -->
+        <!-- WEEKLY -->
         <section class="panel section-divider">
-            <h2>Daily</h2>
+            <h2>Weekly</h2>
+            <h3>Weekly Boss</h3>
             <div class="checklist-grid">
-                <label><input type="checkbox" id="todo-comm"> Daily Commission</label>
-                <label><input type="checkbox" id="todo-resin"> Resin</label>
-                <label><input type="checkbox" id="todo-exp"> Expedition</label>
-                <label><input type="checkbox" id="todo-rep"> Reputation</label>
-                <label><input type="checkbox" id="todo-event"> Event</label>
-                <label><input type="checkbox" id="todo-boss"> Weekly Boss</label>
+                <label><input type="checkbox" id="wb-stormterror"> Stormterror</label>
+                <label><input type="checkbox" id="wb-andrius"> Andrius</label>
+                <label><input type="checkbox" id="wb-childe"> Childe</label>
+            </div>
+            <h3>Reputation Level</h3>
+            <div class="grid-2col" style="margin-top: 10px;">
+                <label>Mondstadt <input type="number" id="rep-mondstadt" value="3"></label>
+                <label>Liyue <input type="number" id="rep-liyue" value="2"></label>
             </div>
         </section>
 
-        <!-- OUTPUT AREA (Tempat Text Hasil Report/Compare Muncul) -->
+        <!-- GOALS -->
+        <section class="panel section-divider">
+            <h2>Goals</h2>
+            <div class="grid-1col">
+                <label>Current Goal <input type="text" id="goal-current" value="Finish Liyue"></label>
+                <label>Medium Goal <input type="text" id="goal-medium" value="Unlock Inazuma"></label>
+                <label>Long Goal (Targets) <textarea id="goal-long" rows="2" placeholder="Nahida, Zhongli"></textarea></label>
+            </div>
+        </section>
+
+        <!-- OUTPUT AREA -->
         <section class="panel section-divider" id="output-section" style="display:none;">
             <h2>Text Output</h2>
             <textarea id="text-output" readonly></textarea>
