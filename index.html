@@ -3,97 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Journey Dashboard</title>
+    <title>Genshin Journey Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="tracker-wrapper">
         <header class="header-banner">
-            <div>
-                <h1>Genshin Journey Dashboard</h1>
-                <p class="subtitle">Decision Engine & Account Tracker</p>
-            </div>
+            <h1>Genshin Journey Tracker</h1>
             <button type="button" id="theme-toggle" onclick="toggleTheme()">☀️ Light Mode</button>
         </header>
 
-        <!-- DASHBOARD MISSION PANEL (PANEL UTAMA DI PALING ATAS) -->
-        <section class="panel mission-dashboard">
-            <h2>🎯 TODAY'S MISSION & DECISION DASHBOARD</h2>
-            <div class="grid-2col">
-                <div>
-                    <label>Main Mission
-                        <input type="text" id="m-main" value="Continue Archon Quest: Chapter II Act I">
-                    </label>
-                    <label style="margin-top: 6px;">Priority Build
-                        <textarea id="m-priority" rows="3">1. Fischl Skill -> Lv6&#10;2. Tighnari Ascension&#10;3. Spend Original Resin</textarea>
-                    </label>
-                </div>
-                <div>
-                    <label>Warnings
-                        <textarea id="m-warnings" rows="2">⚠ Original Resin almost full&#10;⚠ Mora below 200k</textarea>
-                    </label>
-                    <label style="margin-top: 6px;">Next Pull Decision
-                        <input type="text" id="m-pull" value="SAVE - Target: Nahida">
-                    </label>
-                </div>
-            </div>
-        </section>
-
-        <!-- ACCOUNT & RULES -->
+        <!-- ACCOUNT -->
         <section class="panel">
-            <h2>Account & Rules</h2>
+            <h2>Account</h2>
             <div class="grid-3col">
                 <label>AR <input type="number" id="ar" value="31"></label>
                 <label>WL <input type="number" id="wl" value="3"></label>
                 <label>Server <input type="text" id="server" value="Asia"></label>
                 <label>Birthday <input type="text" id="birthday" value="-"></label>
                 <label>Current Region <input type="text" id="current-region" value="Nod Krai"></label>
+            </div>
+            <div class="grid-1col" style="margin-top: 8px;">
                 <label>Archon Quest <input type="text" id="archon-quest" value="Chapter I Act IV"></label>
-            </div>
-            <div class="grid-1col" style="margin-top: 10px;">
-                <label>Account Rules Active
-                    <textarea id="acc-rules" rows="3">✔ Story First | ✔ No Quick Start | ✔ No Weapon Banner | ✔ No Artifact Farming before AR45 | ✔ Save Fragile Resin | ✔ Focus only 4 Characters | ✔ Skip spoilers | ✔ No exploration 100% before story</textarea>
-                </label>
+                <label>Story Quest <input type="text" id="story-quest" value="-"></label>
+                <label>World Quest <input type="text" id="world-quest" value="-"></label>
             </div>
         </section>
 
-        <!-- WISH & PITY TRACKER -->
+        <!-- RESOURCES -->
         <section class="panel">
-            <h2>Wish & Pity Tracker</h2>
-            <div class="grid-3col">
-                <label>Char Banner Pity <input type="number" id="w-char-pity" value="15"></label>
-                <label>Char Guaranteed? 
-                    <select id="w-char-guaranteed">
-                        <option value="No">No (50/50)</option>
-                        <option value="Yes">Yes</option>
-                    </select>
-                </label>
-                <label>Weapon Banner Pity <input type="number" id="w-wpn-pity" value="0"></label>
-                <label>Standard Banner Pity <input type="number" id="w-std-pity" value="42"></label>
-            </div>
-            <h3 style="margin-top: 10px;">Wishlist Priority</h3>
-            <div class="grid-1col">
-                <textarea id="wishlist" rows="3" placeholder="Nahida (5★) - P0&#10;Zhongli (5★) - P1"></textarea>
-            </div>
-        </section>
-
-        <!-- DAILY & SESSION LOG -->
-        <section class="panel">
-            <h2>Daily Status & Session Log</h2>
-            <div class="checklist-grid" style="margin-bottom: 10px;">
-                <label><input type="checkbox" id="d-daily" checked> Daily Comms</label>
-                <label><input type="checkbox" id="d-resin" checked> Resin Spent</label>
-                <label><input type="checkbox" id="d-weekly"> Weekly Bosses</label>
-                <label><input type="checkbox" id="d-event" checked> Events</label>
-            </div>
-            <label>Last Session Summary (Session Log)
-                <textarea id="session-log" rows="3" placeholder="AR32->33 | +400 Primo | Finished Liyue | Unlocked Inazuma"></textarea>
-            </label>
-        </section>
-
-        <!-- RESOURCES & INVENTORY TRACKER -->
-        <section class="panel">
-            <h2>Resources & Inventory</h2>
+            <h2>Resources</h2>
             <div class="grid-3col">
                 <label>Primogem <input type="number" id="primo" value="4699"></label>
                 <label>Genesis Crystal <input type="number" id="genesis" value="0"></label>
@@ -104,18 +43,14 @@
                 <label>Mora <input type="number" id="mora" value="841556"></label>
                 <label>Hero's Wit <input type="number" id="herowit" value="37"></label>
                 <label>Mystic Ore <input type="number" id="mystic-ore" value="100"></label>
-            </div>
-            <div class="grid-2col" style="margin-top: 10px;">
-                <label>Boss Materials <textarea id="inv-boss-mats" rows="2" placeholder="Majestic Hooked Beak: 21"></textarea></label>
-                <label>Talent Books <textarea id="inv-talent-books" rows="2" placeholder="Admonition: 3 Teachings, 7 Guides, 0 Philosophies"></textarea></label>
-                <label>Billets Inventory <textarea id="inv-billets" rows="2" placeholder="Sword: 2 | Bow: 1 | Claymore: 0 | Polearm: 1 | Catalyst: 0"></textarea></label>
-                <label>Adventure Handbook (Domains Today) <textarea id="handbook-domains" rows="2" placeholder="Talent: Open | Weapon: Open | Boss: Need"></textarea></label>
+                <label>Dream Solvent <input type="number" id="dream-solvent" value="0"></label>
+                <label>Crown <input type="number" id="crown" value="0"></label>
             </div>
         </section>
 
         <!-- CURRENT PARTY -->
         <section class="panel">
-            <h2>Current Active Party</h2>
+            <h2>Current Party</h2>
             <div class="grid-4col">
                 <input type="text" id="team1" list="char-suggestions" placeholder="Slot 1" value="Traveler">
                 <input type="text" id="team2" list="char-suggestions" placeholder="Slot 2" value="Xiangling">
@@ -124,28 +59,27 @@
             </div>
         </section>
 
-        <!-- CHARACTER DATABASE & ROSTER -->
+        <!-- CHARACTERS -->
         <section class="panel">
-            <h2>Character Database</h2>
+            <h2>Characters</h2>
             <div class="add-char-block">
                 <div class="grid-3col">
                     <label>Name
-                        <input type="text" id="c-name" list="char-suggestions" placeholder="Select Name">
+                        <input type="text" id="c-name" list="char-suggestions" placeholder="Select/Type Name" onchange="autoFillCharDefaults(this.value)">
                     </label>
-                    <label>Level/Max <input type="text" id="c-level" placeholder="50/60"></label>
-                    <label>Current EXP <input type="text" id="c-exp" placeholder="42132 / 98000"></label>
+                    <label>Level <input type="number" id="c-level" value="60"></label>
                     <label>Constellation <input type="text" id="c-const" value="C0"></label>
+                    <label>Friendship <input type="number" id="c-friend" value="1"></label>
                     <label>Weapon <input type="text" id="c-weapon" placeholder="Slingshot R4 Lv60"></label>
-                    <label>Talent (N / S / B) <input type="text" id="c-talent" value="2 / 2 / 2"></label>
+                    <label>Talent <input type="text" id="c-talent" value="1/1/1"></label>
                 </div>
-                <div class="grid-1col" style="margin-top: 8px;">
-                    <label>Artifact Score & Parts 
-                        <input type="text" id="c-artifact" placeholder="Temporary (Flower +12, Feather +12, Sands +8, Goblet +8, Circlet +8)">
-                    </label>
+                <div class="grid-2col" style="margin-top: 8px;">
+                    <label>Artifact <input type="text" id="c-artifact" value="Temporary"></label>
+                    <button type="button" class="btn-accent" onclick="addCharacter()">+ Add Character</button>
                 </div>
-                <button type="button" class="btn-accent" style="margin-top: 8px; width: 100%;" onclick="addCharacter()">+ Add / Update Character</button>
             </div>
 
+            <!-- Datalist untuk Autocomplete Karakter -->
             <datalist id="char-suggestions">
                 <option value="Traveler"><option value="Amber"><option value="Kaeya"><option value="Lisa">
                 <option value="Barbara"><option value="Xiangling"><option value="Noelle"><option value="Fischl">
@@ -171,15 +105,15 @@
         <section class="panel">
             <h2>Weapons Inventory</h2>
             <div class="grid-1col">
-                <label>5★ Weapons <textarea id="wpn-5star" rows="1" placeholder="None"></textarea></label>
-                <label>4★ Weapons <textarea id="wpn-4star" rows="2" placeholder="Favonius Sword R2 Lv50&#10;Favonius Warbow R1 Lv50"></textarea></label>
-                <label>3★ Weapons <textarea id="wpn-3star" rows="2" placeholder="Slingshot R4&#10;TTDS R4"></textarea></label>
+                <label>5★ Weapons <textarea id="wpn-5star" rows="2" placeholder="None"></textarea></label>
+                <label>4★ Weapons <textarea id="wpn-4star" rows="3" placeholder="Favonius Sword R2 Lv50&#10;Favonius Warbow R1 Lv50"></textarea></label>
+                <label>3★ Weapons <textarea id="wpn-3star" rows="3" placeholder="Slingshot R4&#10;TTDS R4"></textarea></label>
             </div>
         </section>
 
         <!-- EXPLORATION & PROGRESSION -->
         <section class="panel">
-            <h2>Exploration & Statues</h2>
+            <h2>Exploration</h2>
             <div class="grid-3col">
                 <label>Mondstadt <input type="text" id="exp-mondstadt" value="38%"></label>
                 <label>Liyue <input type="text" id="exp-liyue" value="10%"></label>
@@ -195,7 +129,7 @@
                 <label>Nod Krai <input type="text" id="exp-nodkrai" value="0%"></label>
             </div>
 
-            <h3 style="margin-top: 10px;">Statue & Abyss</h3>
+            <h2 style="margin-top: 15px;">Statues & Progression</h2>
             <div class="grid-3col">
                 <label>Spiral Abyss <input type="text" id="abyss" value="Floor 3 Chamber 3"></label>
                 <label>Statue Mondstadt <input type="text" id="statue-mond" value="7/7"></label>
@@ -207,9 +141,9 @@
             </div>
         </section>
 
-        <!-- WEEKLY BOSSES -->
+        <!-- WEEKLY -->
         <section class="panel">
-            <h2>Weekly Bosses Check</h2>
+            <h2>Weekly Bosses</h2>
             <div class="checklist-grid">
                 <label><input type="checkbox" id="wb-dvalin"> Stormterror (Dvalin)</label>
                 <label><input type="checkbox" id="wb-andrius"> Wolf (Andrius)</label>
@@ -217,25 +151,45 @@
                 <label><input type="checkbox" id="wb-azhdaha"> Azhdaha</label>
                 <label><input type="checkbox" id="wb-signora"> La Signora</label>
                 <label><input type="checkbox" id="wb-raiden"> Magatsu Mitake Narukami</label>
-                <label><input type="checkbox" id="wb-scara"> Shouki no Kami</label>
+                <label><input type="checkbox" id="wb-scara"> Shouki no Kami (Scaramouche)</label>
                 <label><input type="checkbox" id="wb-apep"> Guardian of Apep's Oasis</label>
                 <label><input type="checkbox" id="wb-whale"> All-Devouring Narwhal</label>
                 <label><input type="checkbox" id="wb-knave"> The Knave (Arlecchino)</label>
                 <label><input type="checkbox" id="wb-natlan"> Natlan Weekly Boss</label>
             </div>
+
+            <h3 style="margin-top: 12px;">Reputation Level</h3>
+            <div class="grid-3col">
+                <label>Mondstadt <input type="number" id="rep-mondstadt" value="3"></label>
+                <label>Liyue <input type="number" id="rep-liyue" value="2"></label>
+                <label>Inazuma <input type="number" id="rep-inazuma" value="0"></label>
+                <label>Sumeru <input type="number" id="rep-sumeru" value="0"></label>
+                <label>Fontaine <input type="number" id="rep-fontaine" value="0"></label>
+                <label>Natlan <input type="number" id="rep-natlan" value="0"></label>
+            </div>
+        </section>
+
+        <!-- GOALS -->
+        <section class="panel">
+            <h2>Goals</h2>
+            <div class="grid-1col">
+                <label>Current Goal <input type="text" id="goal-current" value="Finish Liyue"></label>
+                <label>Medium Goal <input type="text" id="goal-medium" value="Unlock Inazuma"></label>
+                <label>Long Goal (Targets) <textarea id="goal-long" rows="2" placeholder="Nahida, Zhongli"></textarea></label>
+            </div>
         </section>
 
         <!-- OUTPUT AREA -->
         <section class="panel" id="output-section" style="display:none;">
-            <h2>Generated Output (Save File Format)</h2>
+            <h2>Generated Output</h2>
             <textarea id="text-output" readonly></textarea>
         </section>
 
         <!-- BUTTONS -->
         <footer class="action-footer">
             <div class="btn-group">
-                <button type="button" onclick="logSession()">Save Session</button>
-                <button type="button" class="btn-accent" onclick="generateReport()">Generate Save File</button>
+                <button type="button" onclick="logSession()">Save</button>
+                <button type="button" class="btn-accent" onclick="generateReport()">Generate Report</button>
                 <button type="button" onclick="compareSessions()">Compare</button>
                 <button type="button" onclick="exportJSON()">Export JSON</button>
                 <button type="button" onclick="document.getElementById('importFile').click()">Import JSON</button>
