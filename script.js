@@ -1,12 +1,15 @@
 let appData = {
     account: { ar: 31, wl: 3, server: "Asia", birthday: "-", region: "Nod Krai", archon_quest: "Chapter I Act IV", story_quest: "-", world_quest: "-" },
     resources: { primo: 4699, genesis: 0, intertwined: 8, acquaint: 1, resin: 99, fragile: 22, mora: 841556, herowit: 37, mystic_ore: 100, dream_solvent: 0, crown: 0 },
-    party: ["Traveler", "Xianling", "Kaeya", "Barbara"],
+    party: ["Traveler", "Xiangling", "Kaeya", "Barbara"],
     roster: [],
     weapons: { star5: "None", star4: "Favonius Sword R2 Lv50\nFavonius Warbow R1 Lv50", star3: "Slingshot R4\nTTDS R4" },
-    exploration: { mondstadt: "38%", liyue: "10%", inazuma: "0%", sumeru: "0%", fontaine: "0%", natlan: "0%" },
-    progression: { abyss: "Floor 3 Chamber 3", statue: { mondstadt: "7/7", liyue: "5/5", sumeru: "1/7" } },
-    weekly: { boss: { stormterror: false, andrius: false, childe: false }, reputation: { mondstadt: 3, liyue: 2 } },
+    exploration: { mondstadt: "38%", liyue: "10%", dragonspine: "0%", inazuma: "0%", enkanomiya: "0%", chasm: "0%", sumeru: "0%", fontaine: "0%", chenyu: "0%", remuria: "0%", natlan: "0%", nodkrai: "0%" },
+    progression: { abyss: "Floor 3 Chamber 3", statue: { mondstadt: "7/7", liyue: "5/5", inazuma: "0/10", sumeru: "1/7", fontaine: "0/10", natlan: "0/10" } },
+    weekly: { 
+        boss: { dvalin: false, andrius: false, childe: false, azhdaha: false, signora: false, raiden: false, scara: false, apep: false, whale: false, knave: false, natlan: false }, 
+        reputation: { mondstadt: 3, liyue: 2, inazuma: 0, sumeru: 0, fontaine: 0, natlan: 0 } 
+    },
     goals: { current: "Finish Liyue", medium: "Unlock Inazuma", long: "Nahida, Zhongli" },
     history: []
 };
@@ -15,15 +18,25 @@ document.addEventListener('DOMContentLoaded', () => {
     setupImportListener();
 });
 
-function setupImportListener() {
-    document.getElementById('importFile').addEventListener('change', function(e) {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            appData = JSON.parse(event.target.result);
-            loadDataToUI();
-        };
-        reader.readAsText(e.target.files[0]);
-    });
+function toggleTheme() {
+    const html = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    if (html.getAttribute('data-theme') === 'dark') {
+        html.setAttribute('data-theme', 'light');
+        btn.innerText = '🌙 Dark Mode';
+    } else {
+        html.setAttribute('data-theme', 'dark');
+        btn.innerText = '☀️ Light Mode';
+    }
+}
+
+function autoFillCharDefaults(charName) {
+    if (!charName) return;
+    // Setel default terprediksi jika belum diisi
+    document.getElementById('c-level').value = 50;
+    document.getElementById('c-const').value = "C0";
+    document.getElementById('c-talent').value = "1/1/1";
+    document.getElementById('c-artifact').value = "Temporary";
 }
 
 function updateDataFromUI() {
@@ -63,93 +76,57 @@ function updateDataFromUI() {
     appData.weapons.star4 = document.getElementById('wpn-4star').value;
     appData.weapons.star3 = document.getElementById('wpn-3star').value;
 
-    // Exploration & Progression
-    appData.exploration.mondstadt = document.getElementById('exp-mondstadt').value;
-    appData.exploration.liyue = document.getElementById('exp-liyue').value;
-    appData.exploration.inazuma = document.getElementById('exp-inazuma').value;
-    appData.exploration.sumeru = document.getElementById('exp-sumeru').value;
-    appData.exploration.fontaine = document.getElementById('exp-fontaine').value;
-    appData.exploration.natlan = document.getElementById('exp-natlan').value;
+    // Exploration
+    const exp = appData.exploration;
+    exp.mondstadt = document.getElementById('exp-mondstadt').value;
+    exp.liyue = document.getElementById('exp-liyue').value;
+    exp.dragonspine = document.getElementById('exp-dragonspine').value;
+    exp.inazuma = document.getElementById('exp-inazuma').value;
+    exp.enkanomiya = document.getElementById('exp-enkanomiya').value;
+    exp.chasm = document.getElementById('exp-chasm').value;
+    exp.sumeru = document.getElementById('exp-sumeru').value;
+    exp.fontaine = document.getElementById('exp-fontaine').value;
+    exp.chenyu = document.getElementById('exp-chenyu').value;
+    exp.remuria = document.getElementById('exp-remuria').value;
+    exp.natlan = document.getElementById('exp-natlan').value;
+    exp.nodkrai = document.getElementById('exp-nodkrai').value;
 
+    // Progression
     appData.progression.abyss = document.getElementById('abyss').value;
     appData.progression.statue.mondstadt = document.getElementById('statue-mond').value;
     appData.progression.statue.liyue = document.getElementById('statue-liyue').value;
+    appData.progression.statue.inazuma = document.getElementById('statue-inazuma').value;
     appData.progression.statue.sumeru = document.getElementById('statue-sumeru').value;
+    appData.progression.statue.fontaine = document.getElementById('statue-fontaine').value;
+    appData.progression.statue.natlan = document.getElementById('statue-natlan').value;
 
-    // Weekly
-    appData.weekly.boss.stormterror = document.getElementById('wb-stormterror').checked;
-    appData.weekly.boss.andrius = document.getElementById('wb-andrius').checked;
-    appData.weekly.boss.childe = document.getElementById('wb-childe').checked;
-    appData.weekly.reputation.mondstadt = parseInt(document.getElementById('rep-mondstadt').value) || 0;
-    appData.weekly.reputation.liyue = parseInt(document.getElementById('rep-liyue').value) || 0;
+    // Weekly Bosses
+    const wb = appData.weekly.boss;
+    wb.dvalin = document.getElementById('wb-dvalin').checked;
+    wb.andrius = document.getElementById('wb-andrius').checked;
+    wb.childe = document.getElementById('wb-childe').checked;
+    wb.azhdaha = document.getElementById('wb-azhdaha').checked;
+    wb.signora = document.getElementById('wb-signora').checked;
+    wb.raiden = document.getElementById('wb-raiden').checked;
+    wb.scara = document.getElementById('wb-scara').checked;
+    wb.apep = document.getElementById('wb-apep').checked;
+    wb.whale = document.getElementById('wb-whale').checked;
+    wb.knave = document.getElementById('wb-knave').checked;
+    wb.natlan = document.getElementById('wb-natlan').checked;
+
+    // Weekly Reputation
+    const rep = appData.weekly.reputation;
+    rep.mondstadt = parseInt(document.getElementById('rep-mondstadt').value) || 0;
+    rep.liyue = parseInt(document.getElementById('rep-liyue').value) || 0;
+    rep.inazuma = parseInt(document.getElementById('rep-inazuma').value) || 0;
+    rep.sumeru = parseInt(document.getElementById('rep-sumeru').value) || 0;
+    rep.fontaine = parseInt(document.getElementById('rep-fontaine').value) || 0;
+    rep.natlan = parseInt(document.getElementById('rep-natlan').value) || 0;
 
     // Goals
     appData.goals.current = document.getElementById('goal-current').value;
     appData.goals.medium = document.getElementById('goal-medium').value;
     appData.goals.long = document.getElementById('goal-long').value;
-}
-
-function loadDataToUI() {
-    // Account
-    document.getElementById('ar').value = appData.account.ar;
-    document.getElementById('wl').value = appData.account.wl;
-    document.getElementById('server').value = appData.account.server;
-    document.getElementById('birthday').value = appData.account.birthday;
-    document.getElementById('current-region').value = appData.account.region;
-    document.getElementById('archon-quest').value = appData.account.archon_quest;
-    document.getElementById('story-quest').value = appData.account.story_quest;
-    document.getElementById('world-quest').value = appData.account.world_quest;
-
-    // Resources
-    document.getElementById('primo').value = appData.resources.primo;
-    document.getElementById('genesis').value = appData.resources.genesis;
-    document.getElementById('intertwined').value = appData.resources.intertwined;
-    document.getElementById('acquaint').value = appData.resources.acquaint;
-    document.getElementById('resin').value = appData.resources.resin;
-    document.getElementById('fragile').value = appData.resources.fragile;
-    document.getElementById('mora').value = appData.resources.mora;
-    document.getElementById('herowit').value = appData.resources.herowit;
-    document.getElementById('mystic-ore').value = appData.resources.mystic_ore;
-    document.getElementById('dream-solvent').value = appData.resources.dream_solvent;
-    document.getElementById('crown').value = appData.resources.crown;
-
-    // Party
-    document.getElementById('team1').value = appData.party[0] || "";
-    document.getElementById('team2').value = appData.party[1] || "";
-    document.getElementById('team3').value = appData.party[2] || "";
-    document.getElementById('team4').value = appData.party[3] || "";
-
-    // Weapons
-    document.getElementById('wpn-5star').value = appData.weapons.star5;
-    document.getElementById('wpn-4star').value = appData.weapons.star4;
-    document.getElementById('wpn-3star').value = appData.weapons.star3;
-
-    // Exploration & Progression
-    document.getElementById('exp-mondstadt').value = appData.exploration.mondstadt;
-    document.getElementById('exp-liyue').value = appData.exploration.liyue;
-    document.getElementById('exp-inazuma').value = appData.exploration.inazuma;
-    document.getElementById('exp-sumeru').value = appData.exploration.sumeru;
-    document.getElementById('exp-fontaine').value = appData.exploration.fontaine;
-    document.getElementById('exp-natlan').value = appData.exploration.natlan;
-
-    document.getElementById('abyss').value = appData.progression.abyss;
-    document.getElementById('statue-mond').value = appData.progression.statue.mondstadt;
-    document.getElementById('statue-liyue').value = appData.progression.statue.liyue;
-    document.getElementById('statue-sumeru').value = appData.progression.statue.sumeru;
-
-    // Weekly
-    document.getElementById('wb-stormterror').checked = appData.weekly.boss.stormterror;
-    document.getElementById('wb-andrius').checked = appData.weekly.boss.andrius;
-    document.getElementById('wb-childe').checked = appData.weekly.boss.childe;
-    document.getElementById('rep-mondstadt').value = appData.weekly.reputation.mondstadt;
-    document.getElementById('rep-liyue').value = appData.weekly.reputation.liyue;
-
-    // Goals
-    document.getElementById('goal-current').value = appData.goals.current;
-    document.getElementById('goal-medium').value = appData.goals.medium;
-    document.getElementById('goal-long').value = appData.goals.long;
-
-    renderRoster();
 }
 
 function addCharacter() {
@@ -187,7 +164,7 @@ function renderRoster() {
                 <strong>${c.name}</strong> (Lv${c.level} ${c.constellation})<br>
                 <span style="color:var(--text-muted)">Wpn: ${c.weapon} | Talent: ${c.talent}</span>
             </div>
-            <button type="button" style="padding:2px 6px; color:#f38ba8;" onclick="removeCharacter(${index})">Delete</button>
+            <button type="button" style="padding:2px 6px; color:#f38ba8; border:none; background:none; cursor:pointer;" onclick="removeCharacter(${index})">✕ Delete</button>
         `;
         list.appendChild(div);
     });
@@ -316,29 +293,18 @@ None
 EXPLORATION
 ━━━━━━━━━━━━━━━━
 
-Mondstadt
-
-${exp.mondstadt}
-
-Liyue
-
-${exp.liyue}
-
-Inazuma
-
-${exp.inazuma}
-
-Sumeru
-
-${exp.sumeru}
-
-Fontaine
-
-${exp.fontaine}
-
-Natlan
-
-${exp.natlan}
+Mondstadt: ${exp.mondstadt}
+Liyue: ${exp.liyue}
+Dragonspine: ${exp.dragonspine}
+Inazuma: ${exp.inazuma}
+Enkanomiya: ${exp.enkanomiya}
+Chasm (Underground): ${exp.chasm}
+Sumeru: ${exp.sumeru}
+Fontaine: ${exp.fontaine}
+Chenyu Vale: ${exp.chenyu}
+Remuria: ${exp.remuria}
+Natlan: ${exp.natlan}
+Nod Krai: ${exp.nodkrai}
 
 ━━━━━━━━━━━━━━━━
 PROGRESSION
@@ -351,10 +317,11 @@ ${prog.abyss}
 Statue
 
 Mondstadt ${prog.statue.mondstadt}
-
 Liyue ${prog.statue.liyue}
-
+Inazuma ${prog.statue.inazuma}
 Sumeru ${prog.statue.sumeru}
+Fontaine ${prog.statue.fontaine}
+Natlan ${prog.statue.natlan}
 
 ━━━━━━━━━━━━━━━━
 WEEKLY
@@ -362,21 +329,26 @@ WEEKLY
 
 Weekly Boss
 
-${wkl.boss.stormterror ? '■' : '□'} Stormterror
-
-${wkl.boss.andrius ? '■' : '□'} Andrius
-
+${wkl.boss.dvalin ? '■' : '□'} Stormterror (Dvalin)
+${wkl.boss.andrius ? '■' : '□'} Wolf (Andrius)
 ${wkl.boss.childe ? '■' : '□'} Childe
+${wkl.boss.azhdaha ? '■' : '□'} Azhdaha
+${wkl.boss.signora ? '■' : '□'} La Signora
+${wkl.boss.raiden ? '■' : '□'} Magatsu Mitake Narukami
+${wkl.boss.scara ? '■' : '□'} Shouki no Kami
+${wkl.boss.apep ? '■' : '□'} Guardian of Apep's Oasis
+${wkl.boss.whale ? '■' : '□'} All-Devouring Narwhal
+${wkl.boss.knave ? '■' : '□'} The Knave
+${wkl.boss.natlan ? '■' : '□'} Natlan Boss
 
 Reputation
 
-Mondstadt
-
-${wkl.reputation.mondstadt}
-
-Liyue
-
-${wkl.reputation.liyue}
+Mondstadt: ${wkl.reputation.mondstadt}
+Liyue: ${wkl.reputation.liyue}
+Inazuma: ${wkl.reputation.inazuma}
+Sumeru: ${wkl.reputation.sumeru}
+Fontaine: ${wkl.reputation.fontaine}
+Natlan: ${wkl.reputation.natlan}
 
 ━━━━━━━━━━━━━━━━
 GOALS
@@ -447,6 +419,17 @@ function copyReport() {
     if (!area.value) return alert("Generate report first!");
     navigator.clipboard.writeText(area.value);
     alert("Report copied to clipboard!");
+}
+
+function setupImportListener() {
+    document.getElementById('importFile').addEventListener('change', function(e) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            appData = JSON.parse(event.target.result);
+            loadDataToUI();
+        };
+        reader.readAsText(e.target.files[0]);
+    });
 }
 
 function exportJSON() {

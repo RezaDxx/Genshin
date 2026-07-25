@@ -1,10 +1,26 @@
-:root {
-    --bg-color: #0d0e12;
-    --panel-bg: #161820;
-    --border-color: #242736;
-    --text-main: #cdd6f4;
-    --text-muted: #7f849c;
-    --accent: #89b4fa;
+/* Color Palette Inspired by Genshin Impact UI */
+[data-theme="dark"] {
+    --bg-color: #0b0e14;
+    --panel-bg: #141a24;
+    --border-color: #273244;
+    --text-main: #eceff4;
+    --text-muted: #8892a4;
+    --accent: #e5c158; /* Genshin Vision Gold */
+    --accent-hover: #f3d77e;
+    --card-bg: #1a2230;
+    --highlight: #4c8bf5; /* Primogem Blue */
+}
+
+[data-theme="light"] {
+    --bg-color: #f0f2f5;
+    --panel-bg: #ffffff;
+    --border-color: #d1d5db;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --accent: #cb9b18; 
+    --accent-hover: #b2850f;
+    --card-bg: #f8fafc;
+    --highlight: #2563eb;
 }
 
 body {
@@ -13,50 +29,57 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     font-size: 13px;
-    padding: 30px 15px;
+    padding: 20px 15px;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .tracker-wrapper {
-    max-width: 680px;
+    max-width: 720px;
     margin: 0 auto;
 }
 
-h1 {
-    font-size: 1.3rem;
-    font-weight: 400;
-    text-align: center;
-    letter-spacing: 1px;
-    margin: 0 0 10px 0;
+.header-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-h2 {
-    font-size: 0.95rem;
-    font-weight: 500;
+h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
     color: var(--accent);
-    margin: 0 0 12px 0;
-    text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-h3 {
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    margin: 12px 0 8px 0;
+.panel {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.section-divider {
-    position: relative;
-    margin-bottom: 20px;
+h2 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--highlight);
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-left: 3px solid var(--accent);
+    padding-left: 8px;
 }
-.section-divider::after {
-    content: "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━";
-    display: block;
-    color: var(--border-color);
-    font-size: 10px;
-    letter-spacing: -1px;
-    margin-top: 15px;
-    opacity: 0.4;
+
+h3 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin: 10px 0 6px 0;
 }
 
 .grid-1col { display: grid; grid-template-columns: 1fr; gap: 8px; }
@@ -73,7 +96,7 @@ label {
 }
 
 input[type="text"], input[type="number"], textarea {
-    background: var(--panel-bg);
+    background: var(--card-bg);
     border: 1px solid var(--border-color);
     color: var(--text-main);
     padding: 6px 8px;
@@ -88,19 +111,11 @@ input:focus, textarea:focus {
 }
 
 .add-char-block {
-    background: rgba(255, 255, 255, 0.015);
+    background: var(--card-bg);
     padding: 10px;
-    border: 1px dashed var(--border-color);
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     margin-bottom: 12px;
-}
-
-.add-char-block button {
-    background: var(--accent);
-    color: var(--bg-color);
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
 }
 
 .roster-list-container {
@@ -112,9 +127,9 @@ input:focus, textarea:focus {
 }
 
 .char-card {
-    background: var(--panel-bg);
+    background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 8px;
+    padding: 8px 12px;
     border-radius: 4px;
     display: flex;
     justify-content: space-between;
@@ -124,7 +139,7 @@ input:focus, textarea:focus {
 
 .checklist-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
 }
 
@@ -151,10 +166,11 @@ button {
     background: var(--panel-bg);
     border: 1px solid var(--border-color);
     color: var(--text-main);
-    padding: 8px;
+    padding: 8px 12px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 12px;
+    font-weight: 500;
     transition: all 0.2s;
 }
 
@@ -163,9 +179,21 @@ button:hover {
     color: var(--accent);
 }
 
+button.btn-accent {
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    font-weight: 600;
+}
+
+button.btn-accent:hover {
+    background: var(--accent-hover);
+    color: #0b0e14;
+}
+
 textarea#text-output {
     width: 100%;
-    height: 300px;
+    height: 320px;
     background: var(--bg-color);
     border: 1px solid var(--border-color);
     color: var(--text-main);
