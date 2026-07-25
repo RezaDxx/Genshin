@@ -1,10 +1,11 @@
+/* Color Palette Inspired by Genshin Impact UI */
 [data-theme="dark"] {
     --bg-color: #0b0e14;
     --panel-bg: #141a24;
     --border-color: #273244;
     --text-main: #eceff4;
     --text-muted: #8892a4;
-    --accent: #e5c158; /* Vision Gold */
+    --accent: #e5c158; /* Genshin Vision Gold */
     --accent-hover: #f3d77e;
     --card-bg: #1a2230;
     --highlight: #4c8bf5; /* Primogem Blue */
@@ -63,11 +64,6 @@ h1 {
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.highlight-panel {
-    border: 1px solid var(--accent);
-    background: var(--card-bg);
-}
-
 h2 {
     font-size: 0.9rem;
     font-weight: 600;
@@ -101,7 +97,7 @@ label {
 }
 
 input[type="text"], input[type="number"], select, textarea {
-    background: var(--panel-bg);
+    background: var(--card-bg);
     border: 1px solid var(--border-color);
     color: var(--text-main);
     padding: 6px 8px;
@@ -140,6 +136,21 @@ input:focus, select:focus, textarea:focus {
     justify-content: space-between;
     align-items: center;
     font-size: 11px;
+}
+
+.checklist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.checklist-grid label {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-main);
+    font-size: 12px;
+    cursor: pointer;
 }
 
 .action-footer {
@@ -183,7 +194,7 @@ button.btn-accent:hover {
 
 textarea#text-output {
     width: 100%;
-    height: 380px;
+    height: 350px;
     background: var(--bg-color);
     border: 1px solid var(--border-color);
     color: var(--text-main);

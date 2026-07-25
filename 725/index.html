@@ -13,82 +13,66 @@
             <button type="button" id="theme-toggle" onclick="toggleTheme()">☀️ Light Mode</button>
         </header>
 
-        <!-- NEXT MISSION (TOP PRIORITY) -->
-        <section class="panel highlight-panel">
-            <h2>Next Mission</h2>
-            <div class="grid-1col">
-                <label>Main <input type="text" id="m-main" value="Finish Chapter I Act IV"></label>
-                <label>Today <input type="text" id="m-today" value="Spend Resin on Talent Books"></label>
-                <label>Build <input type="text" id="m-build" value="Tighnari → Talent 4/4/4"></label>
-                <label>Weekly <input type="text" id="m-weekly" value="Stormterror & Wolf"></label>
-            </div>
-        </section>
-
-        <!-- ACCOUNT & CONTEXT -->
+        <!-- ACCOUNT -->
         <section class="panel">
-            <h2>Account & Location</h2>
+            <h2>Account</h2>
             <div class="grid-3col">
                 <label>AR <input type="number" id="ar" value="31"></label>
                 <label>WL <input type="number" id="wl" value="3"></label>
-                <label>Ascension Quest <select id="ascension-quest"><option value="Done">Done</option><option value="Pending">Pending</option></select></label>
                 <label>Server <input type="text" id="server" value="Asia"></label>
-                <label>Current Location <input type="text" id="current-location" value="Liyue Harbor"></label>
-                <label>Story Mode <select id="story-mode"><option value="Strict">Strict (No Quick Start)</option><option value="Flexible">Flexible</option></select></label>
+                <label>Birthday <input type="text" id="birthday" value="-"></label>
+                <label>Current Region <input type="text" id="current-region" value="Nod Krai"></label>
             </div>
             <div class="grid-1col" style="margin-top: 8px;">
-                <label>Current Archon Quest <input type="text" id="archon-quest" value="Chapter I Act IV"></label>
-                <label>Objective <input type="text" id="quest-objective" value="Talk to Ningguang"></label>
-                <label>Current Story Quest <input type="text" id="story-quest" value="-"></label>
+                <label>Archon Quest <input type="text" id="archon-quest" value="Chapter I Act IV"></label>
+                <label>Story Quest <input type="text" id="story-quest" value="-"></label>
                 <label>Active World Quest Count <input type="number" id="world-quest-count" value="3"></label>
-                <label>Important World Quests <textarea id="world-quest-important" rows="2" placeholder="Aranyaka, Golden Slumber"></textarea></label>
+                <label>Important World Quests <textarea id="world-quest-important" rows="2" placeholder="Aranyaka, Golden Slumber, Sacred Sakura Cleverness"></textarea></label>
             </div>
         </section>
 
-        <!-- CHARACTER PRIORITY & TARGETS -->
+        <!-- WISH SYSTEM -->
         <section class="panel">
-            <h2>Priorities & Wish</h2>
-            <div class="grid-1col">
-                <label>Build Priority (Order) <input type="text" id="build-priority" value="1. Tighnari | 2. Fischl | 3. Traveler | 4. Barbara"></label>
-                <label>Saving For (Pull Targets) <input type="text" id="saving-for" value="Nahida, Zhongli"></label>
-            </div>
-            <h3 style="margin-top: 10px;">Wish Details</h3>
+            <h2>Wish & Pity History</h2>
             <div class="grid-2col">
                 <label>Char Banner Pity <input type="number" id="pity-char" value="0"></label>
                 <label>Char Banner Guaranteed <select id="guaranteed-char"><option value="No">No</option><option value="Yes">Yes</option></select></label>
-                <label>Last 5★ Char Banner <input type="text" id="last-5star-char" value="None"></label>
+                <label>Last 5★ Char Banner <input type="text" id="last-5star-char" placeholder="e.g. Jean"></label>
                 <label>Standard Banner Pity <input type="number" id="pity-standard" value="0"></label>
-                <label class="grid-span-2">Last 5★ Standard Banner <input type="text" id="last-5star-standard" value="None"></label>
+                <label class="grid-span-2">Last 5★ Standard Banner <input type="text" id="last-5star-standard" placeholder="e.g. Amos Bow"></label>
             </div>
         </section>
 
-        <!-- RESOURCES -->
+        <!-- RESOURCES & BILLETS -->
         <section class="panel">
             <h2>Resources</h2>
             <div class="grid-3col">
                 <label>Primogem <input type="number" id="primo" value="4699"></label>
+                <label>Genesis Crystal <input type="number" id="genesis" value="0"></label>
                 <label>Intertwined Fate <input type="number" id="intertwined" value="8"></label>
                 <label>Acquaint Fate <input type="number" id="acquaint" value="1"></label>
                 <label>Original Resin <input type="number" id="resin" value="99"></label>
                 <label>Fragile Resin <input type="number" id="fragile" value="22"></label>
                 <label>Mora <input type="number" id="mora" value="841556"></label>
                 <label>Hero's Wit <input type="number" id="herowit" value="37"></label>
-                <label>Sanctifying Essence <input type="number" id="sanct-essence" value="0"></label>
-                <label>Sanctifying Unction <input type="number" id="sanct-unction" value="0"></label>
+                <label>Mystic Ore <input type="number" id="mystic-ore" value="100"></label>
+                <label>Dream Solvent <input type="number" id="dream-solvent" value="0"></label>
+                <label>Crown <input type="number" id="crown" value="0"></label>
             </div>
 
-            <h3 style="margin-top: 12px;">Crafting Billets (North / Mid)</h3>
+            <h3 style="margin-top: 12px;">Crafting Billets</h3>
             <div class="grid-2col">
-                <label>Sword Billet <input type="text" id="billet-sword" value="0 / 0"></label>
-                <label>Claymore Billet <input type="text" id="billet-claymore" value="0 / 0"></label>
-                <label>Polearm Billet <input type="text" id="billet-polearm" value="0 / 0"></label>
-                <label>Bow Billet <input type="text" id="billet-bow" value="0 / 0"></label>
-                <label class="grid-span-2">Catalyst Billet <input type="text" id="billet-catalyst" value="0 / 0"></label>
+                <label>Sword Billet (North / Mid) <input type="text" id="billet-sword" value="0 / 0"></label>
+                <label>Claymore Billet (North / Mid) <input type="text" id="billet-claymore" value="0 / 0"></label>
+                <label>Polearm Billet (North / Mid) <input type="text" id="billet-polearm" value="0 / 0"></label>
+                <label>Bow Billet (North / Mid) <input type="text" id="billet-bow" value="0 / 0"></label>
+                <label class="grid-span-2">Catalyst Billet (North / Mid) <input type="text" id="billet-catalyst" value="0 / 0"></label>
             </div>
         </section>
 
-        <!-- CURRENT PARTY -->
+        <!-- CURRENT PARTY BUILD -->
         <section class="panel">
-            <h2>Current Party</h2>
+            <h2>Current Party (Detailed Build)</h2>
             <div class="grid-4col" style="margin-bottom: 12px;">
                 <input type="text" id="team1" list="char-suggestions" placeholder="Slot 1" value="Traveler">
                 <input type="text" id="team2" list="char-suggestions" placeholder="Slot 2" value="Xiangling">
@@ -98,34 +82,38 @@
 
             <div class="add-char-block">
                 <div class="grid-3col">
-                    <label>Party Member <input type="text" id="cp-name" list="char-suggestions" placeholder="Name"></label>
+                    <label>Name <input type="text" id="cp-name" list="char-suggestions" placeholder="Name"></label>
                     <label>Level <input type="number" id="cp-level" value="60"></label>
-                    <label>Weapon <input type="text" id="cp-weapon" placeholder="Favonius Sword R2 Lv60"></label>
+                    <label>Constellation <input type="text" id="cp-const" value="C0"></label>
+                    <label>Friendship <input type="number" id="cp-friend" value="1"></label>
+                    <label>Weapon <input type="text" id="cp-weapon" placeholder="Slingshot R4 Lv60"></label>
+                    <label>Artifact <input type="text" id="cp-artifact" value="Temporary"></label>
                 </div>
                 <div class="grid-3col" style="margin-top: 8px;">
                     <label>Normal Attack <input type="number" id="cp-t-norm" value="1"></label>
                     <label>Skill <input type="number" id="cp-t-skill" value="1"></label>
                     <label>Burst <input type="number" id="cp-t-burst" value="1"></label>
                 </div>
-                <button type="button" class="btn-accent" style="margin-top: 8px; width: 100%;" onclick="addPartyDetail()">Save Party Member Build</button>
+                <button type="button" class="btn-accent" style="margin-top: 8px; width: 100%;" onclick="addPartyDetail()">Update Active Party Build</button>
             </div>
             <div id="party-build-list" class="roster-list-container"></div>
         </section>
 
-        <!-- ROSTER -->
+        <!-- FULL ROSTER -->
         <section class="panel">
-            <h2>Full Roster</h2>
+            <h2>Full Roster (Simple Ownership List)</h2>
             <div class="add-char-block">
                 <div class="grid-3col">
-                    <label>Character Name <input type="text" id="c-name" list="char-suggestions" placeholder="Select/Type Name"></label>
+                    <label>Character Name
+                        <input type="text" id="c-name" list="char-suggestions" placeholder="Select/Type Name">
+                    </label>
                     <label>Level <input type="number" id="c-level" value="50"></label>
                     <label>Constellation <input type="text" id="c-const" value="C0"></label>
-                    <label class="grid-span-2">Weapon <input type="text" id="c-weapon" placeholder="Slingshot R4 Lv60"></label>
-                    <label>Talent (N/S/B) <input type="text" id="c-talent" value="2 / 2 / 2"></label>
                 </div>
-                <button type="button" class="btn-accent" style="margin-top: 8px; width: 100%;" onclick="addCharacter()">+ Add Character to Roster</button>
+                <button type="button" class="btn-accent" style="margin-top: 8px; width: 100%;" onclick="addCharacter()">+ Add to Roster</button>
             </div>
 
+            <!-- Datalist Autocomplete -->
             <datalist id="char-suggestions">
                 <option value="Traveler"><option value="Amber"><option value="Kaeya"><option value="Lisa">
                 <option value="Barbara"><option value="Xiangling"><option value="Noelle"><option value="Fischl">
@@ -159,7 +147,7 @@
 
         <!-- EXPLORATION & PROGRESSION -->
         <section class="panel">
-            <h2>Exploration & Systems</h2>
+            <h2>Exploration</h2>
             <div class="grid-3col">
                 <label>Mondstadt <input type="text" id="exp-mondstadt" value="38%"></label>
                 <label>Liyue <input type="text" id="exp-liyue" value="10%"></label>
@@ -175,13 +163,7 @@
                 <label>Nod Krai <input type="text" id="exp-nodkrai" value="0%"></label>
             </div>
 
-            <h3 style="margin-top: 12px;">System Progress</h3>
-            <div class="grid-2col">
-                <label>Parametric Transformer <select id="param-trans"><option value="Ready">Ready</option><option value="Cooldowm">Cooldown</option></select></label>
-                <label>Adventure Handbook <input type="text" id="handbook-prog" value="Chapter 7 (6/9)"></label>
-            </div>
-
-            <h3 style="margin-top: 12px;">Statues & Abyss</h3>
+            <h2 style="margin-top: 15px;">Statues & Progression</h2>
             <div class="grid-3col">
                 <label>Spiral Abyss <input type="text" id="abyss" value="Floor 3 Chamber 3"></label>
                 <label>Statue Mondstadt <input type="text" id="statue-mond" value="7/7"></label>
@@ -193,12 +175,21 @@
             </div>
         </section>
 
-        <!-- WEEKLY & REPUTATION -->
+        <!-- WEEKLY -->
         <section class="panel">
-            <h2>Weekly Systems</h2>
-            <div class="grid-2col">
-                <label>Weekly Boss Discount Left <input type="text" id="wb-discount" value="3/3"></label>
-                <label class="grid-span-2">Unlocked Weekly Bosses <input type="text" id="wb-unlocked" value="Stormterror, Wolf"></label>
+            <h2>Weekly Bosses</h2>
+            <div class="checklist-grid">
+                <label><input type="checkbox" id="wb-dvalin"> Stormterror (Dvalin)</label>
+                <label><input type="checkbox" id="wb-andrius"> Wolf (Andrius)</label>
+                <label><input type="checkbox" id="wb-childe"> Childe (Golden House)</label>
+                <label><input type="checkbox" id="wb-azhdaha"> Azhdaha</label>
+                <label><input type="checkbox" id="wb-signora"> La Signora</label>
+                <label><input type="checkbox" id="wb-raiden"> Magatsu Mitake Narukami</label>
+                <label><input type="checkbox" id="wb-scara"> Shouki no Kami (Scaramouche)</label>
+                <label><input type="checkbox" id="wb-apep"> Guardian of Apep's Oasis</label>
+                <label><input type="checkbox" id="wb-whale"> All-Devouring Narwhal</label>
+                <label><input type="checkbox" id="wb-knave"> The Knave (Arlecchino)</label>
+                <label><input type="checkbox" id="wb-natlan"> Natlan Weekly Boss</label>
             </div>
 
             <h3 style="margin-top: 12px;">Reputation Level</h3>
@@ -218,13 +209,13 @@
             <div class="grid-1col">
                 <label>Current Goal <input type="text" id="goal-current" value="Finish Liyue"></label>
                 <label>Medium Goal <input type="text" id="goal-medium" value="Unlock Inazuma"></label>
-                <label>Long Goal <textarea id="goal-long" rows="2" placeholder="Nahida, Zhongli"></textarea></label>
+                <label>Long Goal (Targets) <textarea id="goal-long" rows="2" placeholder="Nahida, Zhongli"></textarea></label>
             </div>
         </section>
 
         <!-- OUTPUT AREA -->
         <section class="panel" id="output-section" style="display:none;">
-            <h2>Generated Output Snapshot</h2>
+            <h2>Generated Output</h2>
             <textarea id="text-output" readonly></textarea>
         </section>
 

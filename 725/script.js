@@ -1,36 +1,36 @@
 let appData = {
-    nextMission: {
-        main: "Finish Chapter I Act IV",
-        today: "Spend Resin on Talent Books",
-        build: "Tighnari → Talent 4/4/4",
-        weekly: "Stormterror & Wolf"
-    },
     account: { 
-        ar: 31, wl: 3, ascension_quest: "Done", server: "Asia", location: "Liyue Harbor", story_mode: "Strict",
-        archon_quest: "Chapter I Act IV", quest_objective: "Talk to Ningguang", story_quest: "-", 
+        ar: 31, wl: 3, server: "Asia", birthday: "-", region: "Nod Krai", 
+        archon_quest: "Chapter I Act IV", story_quest: "-", 
         world_quest_count: 3, world_quest_important: "Aranyaka, Golden Slumber" 
     },
-    priorities: {
-        build_priority: "1. Tighnari | 2. Fischl | 3. Traveler | 4. Barbara",
-        saving_for: "Nahida, Zhongli"
-    },
     wish: {
-        pity_char: 0, guaranteed_char: "No", last_5star_char: "None",
-        pity_standard: 0, last_5star_standard: "None"
+        pity_char: 0,
+        guaranteed_char: "No",
+        last_5star_char: "None",
+        pity_standard: 0,
+        last_5star_standard: "None"
     },
     resources: { 
-        primo: 4699, intertwined: 8, acquaint: 1, resin: 99, fragile: 22, mora: 841556, herowit: 37,
-        sanct_essence: 0, sanct_unction: 0 
+        primo: 4699, genesis: 0, intertwined: 8, acquaint: 1, resin: 99, fragile: 22, mora: 841556, herowit: 37, mystic_ore: 100, dream_solvent: 0, crown: 0 
     },
-    billets: { sword: "0 / 0", claymore: "0 / 0", polearm: "0 / 0", bow: "0 / 0", catalyst: "0 / 0" },
+    billets: {
+        sword: "0 / 0",
+        claymore: "0 / 0",
+        polearm: "0 / 0",
+        bow: "0 / 0",
+        catalyst: "0 / 0"
+    },
     party: ["Traveler", "Xiangling", "Kaeya", "Barbara"],
     partyDetails: [],
     roster: [],
     weapons: { star5: "None", star4: "Favonius Sword R2 Lv50\nFavonius Warbow R1 Lv50", star3: "Slingshot R4\nTTDS R4" },
     exploration: { mondstadt: "38%", liyue: "10%", dragonspine: "0%", inazuma: "0%", enkanomiya: "0%", chasm: "0%", sumeru: "0%", fontaine: "0%", chenyu: "0%", remuria: "0%", natlan: "0%", nodkrai: "0%" },
-    systems: { parametric_transformer: "Ready", handbook: "Chapter 7 (6/9)" },
     progression: { abyss: "Floor 3 Chamber 3", statue: { mondstadt: "7/7", liyue: "5/5", inazuma: "0/10", sumeru: "1/7", fontaine: "0/10", natlan: "0/10" } },
-    weekly: { discount: "3/3", unlocked: "Stormterror, Wolf", reputation: { mondstadt: 3, liyue: 2, inazuma: 0, sumeru: 0, fontaine: 0, natlan: 0 } },
+    weekly: { 
+        boss: { dvalin: false, andrius: false, childe: false, azhdaha: false, signora: false, raiden: false, scara: false, apep: false, whale: false, knave: false, natlan: false }, 
+        reputation: { mondstadt: 3, liyue: 2, inazuma: 0, sumeru: 0, fontaine: 0, natlan: 0 } 
+    },
     goals: { current: "Finish Liyue", medium: "Unlock Inazuma", long: "Nahida, Zhongli" },
     history: []
 };
@@ -52,28 +52,16 @@ function toggleTheme() {
 }
 
 function updateDataFromUI() {
-    // Next Mission
-    appData.nextMission.main = document.getElementById('m-main').value;
-    appData.nextMission.today = document.getElementById('m-today').value;
-    appData.nextMission.build = document.getElementById('m-build').value;
-    appData.nextMission.weekly = document.getElementById('m-weekly').value;
-
     // Account
     appData.account.ar = parseInt(document.getElementById('ar').value) || 0;
     appData.account.wl = parseInt(document.getElementById('wl').value) || 0;
-    appData.account.ascension_quest = document.getElementById('ascension-quest').value;
     appData.account.server = document.getElementById('server').value;
-    appData.account.location = document.getElementById('current-location').value;
-    appData.account.story_mode = document.getElementById('story-mode').value;
+    appData.account.birthday = document.getElementById('birthday').value;
+    appData.account.region = document.getElementById('current-region').value;
     appData.account.archon_quest = document.getElementById('archon-quest').value;
-    appData.account.quest_objective = document.getElementById('quest-objective').value;
     appData.account.story_quest = document.getElementById('story-quest').value;
     appData.account.world_quest_count = parseInt(document.getElementById('world-quest-count').value) || 0;
     appData.account.world_quest_important = document.getElementById('world-quest-important').value;
-
-    // Priorities
-    appData.priorities.build_priority = document.getElementById('build-priority').value;
-    appData.priorities.saving_for = document.getElementById('saving-for').value;
 
     // Wish
     appData.wish.pity_char = parseInt(document.getElementById('pity-char').value) || 0;
@@ -84,14 +72,16 @@ function updateDataFromUI() {
 
     // Resources
     appData.resources.primo = parseInt(document.getElementById('primo').value) || 0;
+    appData.resources.genesis = parseInt(document.getElementById('genesis').value) || 0;
     appData.resources.intertwined = parseInt(document.getElementById('intertwined').value) || 0;
     appData.resources.acquaint = parseInt(document.getElementById('acquaint').value) || 0;
     appData.resources.resin = parseInt(document.getElementById('resin').value) || 0;
     appData.resources.fragile = parseInt(document.getElementById('fragile').value) || 0;
     appData.resources.mora = parseInt(document.getElementById('mora').value) || 0;
     appData.resources.herowit = parseInt(document.getElementById('herowit').value) || 0;
-    appData.resources.sanct_essence = parseInt(document.getElementById('sanct-essence').value) || 0;
-    appData.resources.sanct_unction = parseInt(document.getElementById('sanct-unction').value) || 0;
+    appData.resources.mystic_ore = parseInt(document.getElementById('mystic-ore').value) || 0;
+    appData.resources.dream_solvent = parseInt(document.getElementById('dream-solvent').value) || 0;
+    appData.resources.crown = parseInt(document.getElementById('crown').value) || 0;
 
     // Billets
     appData.billets.sword = document.getElementById('billet-sword').value;
@@ -113,7 +103,7 @@ function updateDataFromUI() {
     appData.weapons.star4 = document.getElementById('wpn-4star').value;
     appData.weapons.star3 = document.getElementById('wpn-3star').value;
 
-    // Exploration & Systems
+    // Exploration
     const exp = appData.exploration;
     exp.mondstadt = document.getElementById('exp-mondstadt').value;
     exp.liyue = document.getElementById('exp-liyue').value;
@@ -128,9 +118,6 @@ function updateDataFromUI() {
     exp.natlan = document.getElementById('exp-natlan').value;
     exp.nodkrai = document.getElementById('exp-nodkrai').value;
 
-    appData.systems.parametric_transformer = document.getElementById('param-trans').value;
-    appData.systems.handbook = document.getElementById('handbook-prog').value;
-
     // Progression
     appData.progression.abyss = document.getElementById('abyss').value;
     appData.progression.statue.mondstadt = document.getElementById('statue-mond').value;
@@ -140,9 +127,21 @@ function updateDataFromUI() {
     appData.progression.statue.fontaine = document.getElementById('statue-fontaine').value;
     appData.progression.statue.natlan = document.getElementById('statue-natlan').value;
 
-    // Weekly
-    appData.weekly.discount = document.getElementById('wb-discount').value;
-    appData.weekly.unlocked = document.getElementById('wb-unlocked').value;
+    // Weekly Bosses
+    const wb = appData.weekly.boss;
+    wb.dvalin = document.getElementById('wb-dvalin').checked;
+    wb.andrius = document.getElementById('wb-andrius').checked;
+    wb.childe = document.getElementById('wb-childe').checked;
+    wb.azhdaha = document.getElementById('wb-azhdaha').checked;
+    wb.signora = document.getElementById('wb-signora').checked;
+    wb.raiden = document.getElementById('wb-raiden').checked;
+    wb.scara = document.getElementById('wb-scara').checked;
+    wb.apep = document.getElementById('wb-apep').checked;
+    wb.whale = document.getElementById('wb-whale').checked;
+    wb.knave = document.getElementById('wb-knave').checked;
+    wb.natlan = document.getElementById('wb-natlan').checked;
+
+    // Weekly Reputation
     const rep = appData.weekly.reputation;
     rep.mondstadt = parseInt(document.getElementById('rep-mondstadt').value) || 0;
     rep.liyue = parseInt(document.getElementById('rep-liyue').value) || 0;
@@ -168,8 +167,11 @@ function addPartyDetail() {
     appData.partyDetails.push({
         name: name,
         level: parseInt(document.getElementById('cp-level').value) || 1,
+        constellation: document.getElementById('cp-const').value || "C0",
+        friendship: parseInt(document.getElementById('cp-friend').value) || 1,
         weapon: document.getElementById('cp-weapon').value || "-",
-        talent: `${norm} / ${skill} / ${burst}`
+        talent: `${norm} / ${skill} / ${burst}`,
+        artifact: document.getElementById('cp-artifact').value || "Temporary"
     });
 
     document.getElementById('cp-name').value = '';
@@ -184,8 +186,8 @@ function renderPartyDetails() {
         div.className = 'char-card';
         div.innerHTML = `
             <div>
-                <strong>${c.name}</strong> Lv${c.level}<br>
-                <span style="color:var(--text-muted)">Weapon: ${c.weapon} | Talent: ${c.talent}</span>
+                <strong>${c.name}</strong> (Lv${c.level} ${c.constellation})<br>
+                <span style="color:var(--text-muted)">Wpn: ${c.weapon} | Talent: ${c.talent}</span>
             </div>
             <button type="button" style="padding:2px 6px; color:#f38ba8; border:none; background:none; cursor:pointer;" onclick="appData.partyDetails.splice(${index},1); renderPartyDetails();">✕ Delete</button>
         `;
@@ -200,9 +202,7 @@ function addCharacter() {
     appData.roster.push({
         name: name,
         level: parseInt(document.getElementById('c-level').value) || 1,
-        constellation: document.getElementById('c-const').value || "C0",
-        weapon: document.getElementById('c-weapon').value || "-",
-        talent: document.getElementById('c-talent').value || "1 / 1 / 1"
+        constellation: document.getElementById('c-const').value || "C0"
     });
 
     document.getElementById('c-name').value = '';
@@ -217,8 +217,7 @@ function renderRoster() {
         div.className = 'char-card';
         div.innerHTML = `
             <div>
-                <strong>${c.name}</strong> Lv${c.level} ${c.constellation}<br>
-                <span style="color:var(--text-muted)">Weapon: ${c.weapon} | Talent: ${c.talent}</span>
+                <strong>${c.name}</strong> Lv${c.level} ${c.constellation}
             </div>
             <button type="button" style="padding:2px 6px; color:#f38ba8; border:none; background:none; cursor:pointer;" onclick="appData.roster.splice(${index},1); renderRoster();">✕ Delete</button>
         `;
@@ -228,31 +227,31 @@ function renderRoster() {
 
 function generateReport() {
     updateDataFromUI();
-    const nm = appData.nextMission;
     const acc = appData.account;
-    const prio = appData.priorities;
     const wsh = appData.wish;
     const res = appData.resources;
     const blt = appData.billets;
     const exp = appData.exploration;
-    const sys = appData.systems;
     const prog = appData.progression;
     const wkl = appData.weekly;
 
-    let rosterStr = appData.roster.map(c => 
-`${c.name}
-Lv${c.level}
-${c.constellation}
-Weapon: ${c.weapon}
-Talent: ${c.talent}
-`).join('\n');
+    let rosterStr = appData.roster.map(c => `${c.name} Lv${c.level} ${c.constellation}`).join('\n');
 
     let partyStr = appData.partyDetails.map(c => 
 `${c.name}
 Lv${c.level}
-Weapon: ${c.weapon}
-Talent: ${c.talent}
-`).join('\n');
+${c.constellation}
+Friendship ${c.friendship}
+
+Weapon
+${c.weapon}
+
+Talent
+${c.talent}
+
+Artifact
+${c.artifact}
+`).join('\n---------\n\n');
 
     const prompt = `You are my permanent Genshin guide.
 
@@ -267,49 +266,21 @@ Playstyle
 - Save Fragile Resin until AR45
 
 ━━━━━━━━━━━━━━━━
-NEXT MISSION
-━━━━━━━━━━━━━━━━
-
-Main
-${nm.main}
-
-Today
-${nm.today}
-
-Build
-${nm.build}
-
-Weekly
-${nm.weekly}
-
-━━━━━━━━━━━━━━━━
 ACCOUNT
 ━━━━━━━━━━━━━━━━
 
 AR: ${acc.ar}
 WL: ${acc.wl}
-Ascension Quest: ${acc.ascension_quest}
 
 Server: ${acc.server}
-Current Location: ${acc.location}
-Story Mode: ${acc.story_mode}
+Birthday: ${acc.birthday}
 
 Current Archon Quest: ${acc.archon_quest}
-Objective: ${acc.quest_objective}
-
 Current Story Quest: ${acc.story_quest}
 Active World Quest Count: ${acc.world_quest_count}
 Important World Quests: ${acc.world_quest_important}
 
-━━━━━━━━━━━━━━━━
-CHARACTER PRIORITY
-━━━━━━━━━━━━━━━━
-
-Build Priority:
-${prio.build_priority}
-
-Saving For:
-${prio.saving_for}
+Current Region: ${acc.region}
 
 ━━━━━━━━━━━━━━━━
 WISH
@@ -326,6 +297,8 @@ RESOURCES
 ━━━━━━━━━━━━━━━━
 
 Primogem: ${res.primo}
+Genesis Crystal: ${res.genesis}
+
 Intertwined Fate: ${res.intertwined}
 Acquaint Fate: ${res.acquaint}
 
@@ -334,8 +307,10 @@ Fragile Resin: ${res.fragile}
 
 Mora: ${res.mora}
 Hero's Wit: ${res.herowit}
-Sanctifying Essence: ${res.sanct_essence}
-Sanctifying Unction: ${res.sanct_unction}
+Mystic Ore: ${res.mystic_ore}
+
+Dream Solvent: ${res.dream_solvent}
+Crown: ${res.crown}
 
 ━━━━━━━━━━━━━━━━
 BILLETS (Northlander / Midlander)
@@ -348,7 +323,7 @@ Bow Billet: ${blt.bow}
 Catalyst Billet: ${blt.catalyst}
 
 ━━━━━━━━━━━━━━━━
-CURRENT PARTY
+CURRENT PARTY (Detailed Build)
 ━━━━━━━━━━━━━━━━
 
 1. ${appData.party[0]}
@@ -356,7 +331,8 @@ CURRENT PARTY
 3. ${appData.party[2]}
 4. ${appData.party[3]}
 
-${partyStr ? '\nDetails:\n' + partyStr : ''}
+${partyStr ? 'Details:\n' + partyStr : ''}
+
 ━━━━━━━━━━━━━━━━
 ROSTER
 ━━━━━━━━━━━━━━━━
@@ -368,16 +344,19 @@ WEAPONS
 ━━━━━━━━━━━━━━━━
 
 5★
+
 ${appData.weapons.star5 || 'None'}
 
 4★
+
 ${appData.weapons.star4 || 'None'}
 
 3★
+
 ${appData.weapons.star3 || 'None'}
 
 ━━━━━━━━━━━━━━━━
-EXPLORATION & SYSTEMS
+EXPLORATION
 ━━━━━━━━━━━━━━━━
 
 Mondstadt: ${exp.mondstadt}
@@ -393,17 +372,16 @@ Remuria: ${exp.remuria}
 Natlan: ${exp.natlan}
 Nod Krai: ${exp.nodkrai}
 
-Parametric Transformer: ${sys.parametric_transformer}
-Adventure Handbook: ${sys.handbook}
-
 ━━━━━━━━━━━━━━━━
 PROGRESSION
 ━━━━━━━━━━━━━━━━
 
 Spiral Abyss
+
 ${prog.abyss}
 
 Statue
+
 Mondstadt ${prog.statue.mondstadt}
 Liyue ${prog.statue.liyue}
 Inazuma ${prog.statue.inazuma}
@@ -415,10 +393,22 @@ Natlan ${prog.statue.natlan}
 WEEKLY
 ━━━━━━━━━━━━━━━━
 
-Weekly Boss Discount Left: ${wkl.discount}
-Unlocked Weekly Bosses: ${wkl.unlocked}
+Weekly Boss
+
+${wkl.boss.dvalin ? '■' : '□'} Stormterror (Dvalin)
+${wkl.boss.andrius ? '■' : '□'} Wolf (Andrius)
+${wkl.boss.childe ? '■' : '□'} Childe
+${wkl.boss.azhdaha ? '■' : '□'} Azhdaha
+${wkl.boss.signora ? '■' : '□'} La Signora
+${wkl.boss.raiden ? '■' : '□'} Magatsu Mitake Narukami
+${wkl.boss.scara ? '■' : '□'} Shouki no Kami
+${wkl.boss.apep ? '■' : '□'} Guardian of Apep's Oasis
+${wkl.boss.whale ? '■' : '□'} All-Devouring Narwhal
+${wkl.boss.knave ? '■' : '□'} The Knave
+${wkl.boss.natlan ? '■' : '□'} Natlan Boss
 
 Reputation
+
 Mondstadt: ${wkl.reputation.mondstadt}
 Liyue: ${wkl.reputation.liyue}
 Inazuma: ${wkl.reputation.inazuma}
@@ -430,9 +420,17 @@ Natlan: ${wkl.reputation.natlan}
 GOALS
 ━━━━━━━━━━━━━━━━
 
-Current Goal: ${appData.goals.current}
-Medium Goal: ${appData.goals.medium}
-Long Goal: ${appData.goals.long}`;
+Current Goal
+
+${appData.goals.current}
+
+Medium Goal
+
+${appData.goals.medium}
+
+Long Goal
+
+${appData.goals.long}`;
 
     showOutput(prompt);
 }
@@ -454,7 +452,7 @@ function compareSessions() {
     let diff = `=== COMPARISON ===\n`;
     diff += `AR: ${prev.account.ar} → ${curr.account.ar}\n`;
     diff += `Primogems: ${prev.resources.primo} → ${curr.resources.primo}\n`;
-    diff += `Current Objective: ${curr.account.quest_objective}\n`;
+    diff += `Char Pity: ${prev.wish.pity_char} → ${curr.wish.pity_char}\n`;
 
     showOutput(diff);
 }
@@ -488,7 +486,7 @@ function exportJSON() {
     updateDataFromUI();
     const blob = new Blob([JSON.stringify(appData, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
-    const a = document.getElementById('download-link') || document.createElement('a');
+    const a = document.createElement('a');
     a.href = url;
     a.download = 'genshin_account_state.json';
     document.body.appendChild(a);
