@@ -1,51 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=JetBrains+Mono:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap');
 
+/* --- MINIMALIST SAAS THEME (DARK SLATE) --- */
 [data-theme="dark"] {
-    --bg-color: #0b0e14;
-    --panel-bg: rgba(22, 28, 38, 0.75);
-    --panel-border: rgba(255, 255, 255, 0.08);
-    --card-bg: rgba(15, 20, 28, 0.6);
-    --text-main: #f0f4f8;
-    --text-muted: #8a99ad;
-    --accent: #38ef7d;        /* Dendro/Anemo Green Cyber Accent */
-    --accent-hover: #2cd46d;
-    --highlight: #ff4757;     /* Pyro Red */
-    --secondary: #00d2ff;     /* Hydro Blue */
-    --glow-color: rgba(56, 239, 125, 0.15);
+    --bg-color: #0d1117;
+    --panel-bg: #161b22;
+    --card-bg: #21262d;
+    --panel-border: #30363d;
+    --text-main: #c9d1d9;
+    --text-muted: #8b949e;
+    --text-bold: #f0f6fc;
+    --accent: #2f81f7;         /* Clean Slate Blue */
+    --accent-hover: #388bfd;
+    --highlight: #f85149;
+    --secondary: #3fb950;      /* Success Green */
 }
 
 [data-theme="light"] {
-    --bg-color: #f0f4f8;
-    --panel-bg: rgba(255, 255, 255, 0.85);
-    --panel-border: rgba(0, 0, 0, 0.08);
-    --card-bg: rgba(240, 244, 248, 0.7);
-    --text-main: #1a202c;
-    --text-muted: #64748b;
-    --accent: #10b981;
-    --accent-hover: #059669;
-    --highlight: #ef4444;
-    --secondary: #0284c7;
-    --glow-color: rgba(16, 185, 129, 0.12);
+    --bg-color: #f6f8fa;
+    --panel-bg: #ffffff;
+    --card-bg: #f3f4f6;
+    --panel-border: #d0d7de;
+    --text-main: #24292f;
+    --text-muted: #57606a;
+    --text-bold: #000000;
+    --accent: #0969da;
+    --accent-hover: #0860ca;
+    --highlight: #cf222e;
+    --secondary: #1a7f37;
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
-    margin: 0;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Inter', -apple-system, sans-serif;
     background-color: var(--bg-color);
-    background-image: 
-        radial-gradient(at 0% 0%, rgba(0, 210, 255, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(255, 71, 87, 0.05) 0px, transparent 50%);
-    background-attachment: fixed;
     color: var(--text-main);
     font-size: 13px;
-    padding: 28px 16px;
+    line-height: 1.5;
+    padding: 20px 12px;
 }
 
 .tracker-wrapper {
-    max-width: 820px;
+    max-width: 860px;
     margin: 0 auto;
+    width: 100%;
 }
 
 /* --- HEADER --- */
@@ -54,104 +56,114 @@ body {
     justify-content: space-between;
     align-items: center;
     background: var(--panel-bg);
-    backdrop-filter: blur(12px);
     border: 1px solid var(--panel-border);
     padding: 16px 20px;
-    border-radius: 12px;
-    margin-bottom: 24px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 .badge-tag {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
+    font-weight: 600;
     color: var(--accent);
-    background: rgba(56, 239, 125, 0.1);
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid var(--accent);
-    letter-spacing: 1px;
+    background: rgba(47, 129, 247, 0.1);
+    padding: 2px 8px;
+    border-radius: 12px;
+    border: 1px solid rgba(47, 129, 247, 0.3);
 }
 
 h1 {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    margin: 4px 0 0 0;
-    letter-spacing: -0.5px;
+    color: var(--text-bold);
+    margin-top: 4px;
 }
 
 /* --- PANELS & CARDS --- */
 .panel {
     background: var(--panel-bg);
-    backdrop-filter: blur(12px);
     border: 1px solid var(--panel-border);
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.15);
+    margin-bottom: 16px;
+    width: 100%;
 }
 
 .highlight-panel {
-    border: 1px solid var(--accent);
-    box-shadow: 0 0 20px var(--glow-color);
+    border-left: 4px solid var(--accent);
 }
 
 h2 {
-    font-family: 'JetBrains Mono', monospace;
     font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--accent);
-    margin: 0 0 16px 0;
+    font-weight: 600;
+    color: var(--text-bold);
+    margin-bottom: 16px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-h2::before {
-    content: '//';
-    color: var(--text-muted);
+/* --- RESPONSIVE GRID SYSTEM --- */
+.form-grid {
+    display: grid;
+    gap: 12px;
+    width: 100%;
 }
 
-/* --- GRIDS & FORM ELEMENTS --- */
-.grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.grid-3col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.grid-4col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.grid-1col { grid-template-columns: 1fr; }
+.grid-2col { grid-template-columns: repeat(2, 1fr); }
+.grid-3col { grid-template-columns: repeat(3, 1fr); }
+.grid-4col { grid-template-columns: repeat(4, 1fr); }
+
+/* MOBILE RESPONSIVE OVERRIDE */
+@media (max-width: 680px) {
+    .grid-2col, .grid-3col, .grid-4col {
+        grid-template-columns: 1fr !important;
+    }
+    .header-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    body {
+        padding: 12px 8px;
+    }
+}
 
 label {
     display: flex;
     flex-direction: column;
     color: var(--text-muted);
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     gap: 6px;
-    text-transform: uppercase;
+    width: 100%;
 }
 
 input[type="text"], input[type="number"], select, textarea {
+    width: 100%;
     background: var(--card-bg);
     border: 1px solid var(--panel-border);
-    color: var(--text-main);
-    padding: 10px 12px;
+    color: var(--text-bold);
+    padding: 8px 12px;
     border-radius: 6px;
     font-size: 12px;
-    font-weight: 600;
     font-family: 'JetBrains Mono', monospace;
-    transition: all 0.2s;
+    transition: border-color 0.15s ease-in-out;
 }
 
 input:focus, select:focus, textarea:focus {
     outline: none;
     border-color: var(--accent);
-    box-shadow: 0 0 10px var(--glow-color);
 }
 
 .add-char-block {
     background: var(--card-bg);
-    padding: 14px;
-    border-radius: 8px;
+    padding: 16px;
+    border-radius: 6px;
     border: 1px solid var(--panel-border);
     margin-bottom: 14px;
 }
@@ -176,44 +188,47 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* --- BUTTONS & FOOTER --- */
-.action-footer { margin-top: 28px; }
+.action-footer {
+    margin-top: 24px;
+}
 
 .btn-group {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    gap: 10px;
+}
+
+@media (max-width: 500px) {
+    .btn-group {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 button {
     background: var(--panel-bg);
     border: 1px solid var(--panel-border);
     color: var(--text-main);
-    padding: 12px 16px;
+    padding: 10px 14px;
     font-size: 11px;
-    font-weight: 700;
-    font-family: 'JetBrains Mono', monospace;
-    text-transform: uppercase;
+    font-weight: 600;
     border-radius: 6px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background-color 0.15s, border-color 0.15s;
 }
 
 button:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    box-shadow: 0 0 12px var(--glow-color);
+    border-color: var(--text-muted);
+    color: var(--text-bold);
 }
 
 button.btn-accent {
     background: var(--accent);
-    color: #000000;
-    border: none;
+    color: #ffffff;
+    border: 1px solid var(--accent);
 }
 
 button.btn-accent:hover {
     background: var(--accent-hover);
-    color: #000000;
-    box-shadow: 0 0 16px var(--glow-color);
 }
 
 #theme-toggle {
@@ -226,10 +241,10 @@ textarea#text-output {
     height: 380px;
     background: var(--card-bg);
     border: 1px solid var(--panel-border);
-    color: var(--accent);
+    color: var(--text-main);
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    padding: 14px;
+    padding: 12px;
     border-radius: 6px;
     white-space: pre;
     resize: vertical;
