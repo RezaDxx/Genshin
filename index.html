@@ -3,240 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Journey Tracker</title>
+    <title>Genshin Endgame Tactical Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="tracker-wrapper">
         <header class="header-banner">
-            <h1>Genshin Journey Tracker</h1>
+            <div class="brand">
+                <span class="badge-tag">ENDGAME HUD</span>
+                <h1>TEYVAT PROGRESS TRACKER</h1>
+            </div>
             <button type="button" id="theme-toggle" onclick="toggleTheme()">☀️ Light Mode</button>
         </header>
 
-        <!-- NEXT MISSION (TOP PRIORITY) -->
+        <!-- DASHBOARD OVERVIEW -->
         <section class="panel highlight-panel">
-            <h2>Next Mission</h2>
-            <div class="grid-1col">
-                <label>Main <input type="text" id="m-main" value="Finish Chapter I Act IV"></label>
-                <label>Today <input type="text" id="m-today" value="Spend Resin on Talent Books"></label>
-                <label>Build <input type="text" id="m-build" value="Tighnari → Talent 4/4/4"></label>
-                <label>Weekly <input type="text" id="m-weekly" value="Stormterror & Wolf"></label>
-            </div>
-        </section>
-
-        <!-- ACCOUNT & CONTEXT -->
-        <section class="panel">
-            <h2>Account & Location</h2>
-            <div class="grid-3col">
-                <label>AR <input type="number" id="ar" value="31"></label>
-                <label>WL <input type="number" id="wl" value="3"></label>
-                <label>Ascension Quest <select id="ascension-quest"><option value="Done">Done</option><option value="Pending">Pending</option></select></label>
-                <label>Server <input type="text" id="server" value="Asia"></label>
-                <label>Current Location <input type="text" id="current-location" value="Liyue Harbor"></label>
-                <label>Story Mode <select id="story-mode"><option value="Strict">Strict (No Quick Start)</option><option value="Flexible">Flexible</option></select></label>
-            </div>
-            <div class="grid-1col" style="margin-top: 8px;">
-                <label>Current Archon Quest <input type="text" id="archon-quest" value="Chapter I Act IV"></label>
-                <label>Objective <input type="text" id="quest-objective" value="Talk to Ningguang"></label>
-                <label>Current Story Quest <input type="text" id="story-quest" value="-"></label>
-                <label>Active World Quest Count <input type="number" id="world-quest-count" value="3"></label>
-                <label>Important World Quests <textarea id="world-quest-important" rows="2" placeholder="Aranyaka, Golden Slumber"></textarea></label>
-            </div>
-        </section>
-
-        <!-- CHARACTER PRIORITY & TARGETS -->
-        <section class="panel">
-            <h2>Priorities & Wish</h2>
-            <div class="grid-1col">
-                <label>Build Priority (Order) <input type="text" id="build-priority" value="1. Tighnari | 2. Fischl | 3. Traveler | 4. Barbara"></label>
-                <label>Saving For (Pull Targets) <input type="text" id="saving-for" value="Nahida, Zhongli"></label>
-            </div>
-            <h3 style="margin-top: 10px;">Wish Details</h3>
+            <h2>Current Endgame Priority</h2>
             <div class="grid-2col">
-                <label>Char Banner Pity <input type="number" id="pity-char" value="0"></label>
-                <label>Char Banner Guaranteed <select id="guaranteed-char"><option value="No">No</option><option value="Yes">Yes</option></select></label>
-                <label>Last 5★ Char Banner <input type="text" id="last-5star-char" value="None"></label>
-                <label>Standard Banner Pity <input type="number" id="pity-standard" value="0"></label>
-                <label class="grid-span-2">Last 5★ Standard Banner <input type="text" id="last-5star-standard" value="None"></label>
+                <label>Main Focus <input type="text" id="p-main" value="Farm Crimson Witch for Arlecchino"></label>
+                <label>Today's Resin Plan <input type="text" id="p-resin" value="Talent Books: Order (Wednesday/Saturday)"></label>
+                <label>Weekly Boss Targets <input type="text" id="p-weekly" value="Arlecchino (3/3 Left), Narwhal"></label>
+                <label>Next Banner Target <input type="text" id="p-target" value="Mavuika (Pyro Archon) + Signature WE"></label>
             </div>
         </section>
 
-        <!-- RESOURCES -->
+        <!-- ACCOUNT STATUS -->
         <section class="panel">
-            <h2>Resources</h2>
+            <h2>Account Status</h2>
+            <div class="grid-4col">
+                <label>AR Level <input type="number" id="acc-ar" value="58"></label>
+                <label>World Level <input type="number" id="acc-wl" value="8"></label>
+                <label>Server <input type="text" id="acc-server" value="Asia"></label>
+                <label>Teapot Lv <input type="number" id="acc-teapot" value="10"></label>
+            </div>
+        </section>
+
+        <!-- RESOURCES & RESIN MANAGEMENT -->
+        <section class="panel">
+            <h2>Resources & Resin Inventory</h2>
             <div class="grid-3col">
-                <label>Primogem <input type="number" id="primo" value="4699"></label>
-                <label>Intertwined Fate <input type="number" id="intertwined" value="8"></label>
-                <label>Acquaint Fate <input type="number" id="acquaint" value="1"></label>
-                <label>Original Resin <input type="number" id="resin" value="99"></label>
-                <label>Fragile Resin <input type="number" id="fragile" value="22"></label>
-                <label>Mora <input type="number" id="mora" value="841556"></label>
-                <label>Hero's Wit <input type="number" id="herowit" value="37"></label>
-                <label>Sanctifying Essence <input type="number" id="sanct-essence" value="0"></label>
-                <label>Sanctifying Unction <input type="number" id="sanct-unction" value="0"></label>
-            </div>
-
-            <h3 style="margin-top: 12px;">Crafting Billets (North / Mid)</h3>
-            <div class="grid-2col">
-                <label>Sword Billet <input type="text" id="billet-sword" value="0 / 0"></label>
-                <label>Claymore Billet <input type="text" id="billet-claymore" value="0 / 0"></label>
-                <label>Polearm Billet <input type="text" id="billet-polearm" value="0 / 0"></label>
-                <label>Bow Billet <input type="text" id="billet-bow" value="0 / 0"></label>
-                <label class="grid-span-2">Catalyst Billet <input type="text" id="billet-catalyst" value="0 / 0"></label>
+                <label>Primogems <input type="number" id="res-primo" value="14200"></label>
+                <label>Intertwined Fates <input type="number" id="res-fates-event" value="18"></label>
+                <label>Acquaint Fates <input type="number" id="res-fates-standard" value="4"></label>
+                <label>Current Resin <input type="number" id="res-resin" value="160"></label>
+                <label>Fragile Resin <input type="number" id="res-fragile" value="24"></label>
+                <label>Transient Resin <input type="number" id="res-transient" value="1"></label>
+                <label>Mora <input type="number" id="res-mora" value="8500000"></label>
+                <label>Hero's Wit <input type="number" id="res-wit" value="420"></label>
+                <label>Crown of Insight <input type="number" id="res-crown" value="5"></label>
+                <label>Crowns Used <input type="number" id="res-crown-used" value="8"></label>
+                <label>Dream Solvent <input type="number" id="res-solvent" value="14"></label>
+                <label>Dust of Azoth <input type="number" id="res-azoth" value="650"></label>
             </div>
         </section>
 
-        <!-- CURRENT PARTY -->
+        <!-- PITY & BANNER TRACKER -->
         <section class="panel">
-            <h2>Current Party</h2>
-            <div class="grid-4col" style="margin-bottom: 12px;">
-                <input type="text" id="team1" list="char-suggestions" placeholder="Slot 1" value="Traveler">
-                <input type="text" id="team2" list="char-suggestions" placeholder="Slot 2" value="Xiangling">
-                <input type="text" id="team3" list="char-suggestions" placeholder="Slot 3" value="Kaeya">
-                <input type="text" id="team4" list="char-suggestions" placeholder="Slot 4" value="Barbara">
+            <h2>Pity & Wish Tracker</h2>
+            <div class="grid-2col">
+                <label>Character Event Pity <input type="number" id="pity-char" value="45"></label>
+                <label>Character 50/50 Status <select id="status-char"><option value="50/50">50/50 (Not Guaranteed)</option><option value="Guaranteed">Guaranteed</option></select></label>
+                <label>Weapon Banner Pity <input type="number" id="pity-weapon" value="12"></label>
+                <label>Epitomized Path Fate Points <input type="number" id="fate-points" value="0" max="1"></label>
+                <label>Standard Banner Pity <input type="number" id="pity-standard" value="62"></label>
+                <label>Chronicled Wish Pity <input type="number" id="pity-chronicled" value="0"></label>
             </div>
+        </section>
 
+        <!-- ENDGAME CONTENT PERFORMANCE -->
+        <section class="panel">
+            <h2>Endgame Performance</h2>
+            <div class="grid-2col">
+                <label>Spiral Abyss Progress <input type="text" id="abyss-stars" value=" Floor 12 (36/36 Stars)"></label>
+                <label>Abyss Team 1 <input type="text" id="abyss-t1" value="Arlecchino, Yelan, Bennett, Kazuha"></label>
+                <label>Abyss Team 2 <input type="text" id="abyss-t2" value="Alhaitham, Nahida, Yae Miko, Zhongli"></label>
+                <label>Imaginarium Theater Level <select id="it-diff"><option value="Visionary">Visionary Mode</option><option value="Hard">Hard Mode</option><option value="Normal">Normal Mode</option></select></label>
+                <label>Imaginarium Stars <input type="text" id="it-stars" value=" 10/10 Fantasia Flowers"></label>
+                <label>Theater Element Pool <input type="text" id="it-elements" value="Pyro / Hydro / Anemo"></label>
+            </div>
+        </section>
+
+        <!-- SQUAD & ARTIFACT BUILDER -->
+        <section class="panel">
+            <h2>Active Build Priority</h2>
             <div class="add-char-block">
                 <div class="grid-3col">
-                    <label>Party Member <input type="text" id="cp-name" list="char-suggestions" placeholder="Name"></label>
-                    <label>Level <input type="number" id="cp-level" value="60"></label>
-                    <label>Weapon <input type="text" id="cp-weapon" placeholder="Favonius Sword R2 Lv60"></label>
+                    <label>Character Name <input type="text" id="b-name" placeholder="Arlecchino"></label>
+                    <label>Level / Constellation <input type="text" id="b-const" value="Lv 90 / C0"></label>
+                    <label>Weapon <input type="text" id="b-weapon" value="Crimson Moon's Semblance R1"></label>
+                    <label>Artifact Set <input type="text" id="b-artifact" value="4pc Fragment of Harmonic Whimsy"></label>
+                    <label>Stats (CR / CD / ER / EM) <input type="text" id="b-stats" value="75.4% / 210.2% / 120% / 80"></label>
+                    <label>Talent Levels <input type="text" id="b-talents" value="10 / 9 / 9"></label>
                 </div>
-                <div class="grid-3col" style="margin-top: 8px;">
-                    <label>Normal Attack <input type="number" id="cp-t-norm" value="1"></label>
-                    <label>Skill <input type="number" id="cp-t-skill" value="1"></label>
-                    <label>Burst <input type="number" id="cp-t-burst" value="1"></label>
-                </div>
-                <button type="button" class="btn-accent" style="margin-top: 8px; width: 100%;" onclick="addPartyDetail()">Save Party Member Build</button>
+                <button type="button" class="btn-accent" style="margin-top: 12px; width: 100%;" onclick="addBuildDetail()">+ Add Build Target</button>
             </div>
-            <div id="party-build-list" class="roster-list-container"></div>
-        </section>
-
-        <!-- ROSTER -->
-        <section class="panel">
-            <h2>Full Roster</h2>
-            <div class="add-char-block">
-                <div class="grid-3col">
-                    <label>Character Name <input type="text" id="c-name" list="char-suggestions" placeholder="Select/Type Name"></label>
-                    <label>Level <input type="number" id="c-level" value="50"></label>
-                    <label>Constellation <input type="text" id="c-const" value="C0"></label>
-                    <label class="grid-span-2">Weapon <input type="text" id="c-weapon" placeholder="Slingshot R4 Lv60"></label>
-                    <label>Talent (N/S/B) <input type="text" id="c-talent" value="2 / 2 / 2"></label>
-                </div>
-                <button type="button" class="btn-accent" style="margin-top: 8px; width: 100%;" onclick="addCharacter()">+ Add Character to Roster</button>
-            </div>
-
-            <datalist id="char-suggestions">
-                <option value="Traveler"><option value="Amber"><option value="Kaeya"><option value="Lisa">
-                <option value="Barbara"><option value="Xiangling"><option value="Noelle"><option value="Fischl">
-                <option value="Razor"><option value="Bennett"><option value="Sucrose"><option value="Xingqiu">
-                <option value="Beidou"><option value="Ningguang"><option value="Chongyun"><option value="Diluc">
-                <option value="Jean"><option value="Mona"><option value="Keqing"><option value="Qiqi">
-                <option value="Venti"><option value="Klee"><option value="Tartaglia"><option value="Zhongli">
-                <option value="Albedo"><option value="Ganyu"><option value="Xiao"><option value="Hu Tao">
-                <option value="Eula"><option value="Kazuha"><option value="Ayaka"><option value="Yoimiya">
-                <option value="Raiden Shogun"><option value="Kokomi"><option value="Itto"><option value="Yelan">
-                <option value="Tighnari"><option value="Collei"><option value="Dori"><option value="Cyno">
-                <option value="Nilou"><option value="Nahida"><option value="Wanderer"><option value="Alhaitham">
-                <option value="Baizhu"><option value="Lyney"><option value="Neuvillette"><option value="Wriothesley">
-                <option value="Furina"><option value="Navia"><option value="Xianyun"><option value="Arlecchino">
-                <option value="Clorinde"><option value="Emilie"><option value="Mualani"><option value="Kinich">
-                <option value="Xilonen"><option value="Chasca"><option value="Mavuika">
-            </datalist>
-
-            <div id="roster-list" class="roster-list-container"></div>
-        </section>
-
-        <!-- WEAPONS -->
-        <section class="panel">
-            <h2>Weapons Inventory</h2>
-            <div class="grid-1col">
-                <label>5★ Weapons <textarea id="wpn-5star" rows="2" placeholder="None"></textarea></label>
-                <label>4★ Weapons <textarea id="wpn-4star" rows="3" placeholder="Favonius Sword R2 Lv50&#10;Favonius Warbow R1 Lv50"></textarea></label>
-                <label>3★ Weapons <textarea id="wpn-3star" rows="3" placeholder="Slingshot R4&#10;TTDS R4"></textarea></label>
-            </div>
-        </section>
-
-        <!-- EXPLORATION & PROGRESSION -->
-        <section class="panel">
-            <h2>Exploration & Systems</h2>
-            <div class="grid-3col">
-                <label>Mondstadt <input type="text" id="exp-mondstadt" value="38%"></label>
-                <label>Liyue <input type="text" id="exp-liyue" value="10%"></label>
-                <label>Dragonspine <input type="text" id="exp-dragonspine" value="0%"></label>
-                <label>Inazuma <input type="text" id="exp-inazuma" value="0%"></label>
-                <label>Enkanomiya <input type="text" id="exp-enkanomiya" value="0%"></label>
-                <label>Chasm (Underground) <input type="text" id="exp-chasm" value="0%"></label>
-                <label>Sumeru <input type="text" id="exp-sumeru" value="0%"></label>
-                <label>Fontaine <input type="text" id="exp-fontaine" value="0%"></label>
-                <label>Chenyu Vale <input type="text" id="exp-chenyu" value="0%"></label>
-                <label>Remuria <input type="text" id="exp-remuria" value="0%"></label>
-                <label>Natlan <input type="text" id="exp-natlan" value="0%"></label>
-                <label>Nod Krai <input type="text" id="exp-nodkrai" value="0%"></label>
-            </div>
-
-            <h3 style="margin-top: 12px;">System Progress</h3>
-            <div class="grid-2col">
-                <label>Parametric Transformer <select id="param-trans"><option value="Ready">Ready</option><option value="Cooldowm">Cooldown</option></select></label>
-                <label>Adventure Handbook <input type="text" id="handbook-prog" value="Chapter 7 (6/9)"></label>
-            </div>
-
-            <h3 style="margin-top: 12px;">Statues & Abyss</h3>
-            <div class="grid-3col">
-                <label>Spiral Abyss <input type="text" id="abyss" value="Floor 3 Chamber 3"></label>
-                <label>Statue Mondstadt <input type="text" id="statue-mond" value="7/7"></label>
-                <label>Statue Liyue <input type="text" id="statue-liyue" value="5/5"></label>
-                <label>Statue Inazuma <input type="text" id="statue-inazuma" value="0/10"></label>
-                <label>Statue Sumeru <input type="text" id="statue-sumeru" value="1/7"></label>
-                <label>Statue Fontaine <input type="text" id="statue-fontaine" value="0/10"></label>
-                <label>Statue Natlan <input type="text" id="statue-natlan" value="0/10"></label>
-            </div>
-        </section>
-
-        <!-- WEEKLY & REPUTATION -->
-        <section class="panel">
-            <h2>Weekly Systems</h2>
-            <div class="grid-2col">
-                <label>Weekly Boss Discount Left <input type="text" id="wb-discount" value="3/3"></label>
-                <label class="grid-span-2">Unlocked Weekly Bosses <input type="text" id="wb-unlocked" value="Stormterror, Wolf"></label>
-            </div>
-
-            <h3 style="margin-top: 12px;">Reputation Level</h3>
-            <div class="grid-3col">
-                <label>Mondstadt <input type="number" id="rep-mondstadt" value="3"></label>
-                <label>Liyue <input type="number" id="rep-liyue" value="2"></label>
-                <label>Inazuma <input type="number" id="rep-inazuma" value="0"></label>
-                <label>Sumeru <input type="number" id="rep-sumeru" value="0"></label>
-                <label>Fontaine <input type="number" id="rep-fontaine" value="0"></label>
-                <label>Natlan <input type="number" id="rep-natlan" value="0"></label>
-            </div>
-        </section>
-
-        <!-- GOALS -->
-        <section class="panel">
-            <h2>Goals</h2>
-            <div class="grid-1col">
-                <label>Current Goal <input type="text" id="goal-current" value="Finish Liyue"></label>
-                <label>Medium Goal <input type="text" id="goal-medium" value="Unlock Inazuma"></label>
-                <label>Long Goal <textarea id="goal-long" rows="2" placeholder="Nahida, Zhongli"></textarea></label>
-            </div>
+            <div id="build-list" class="roster-list-container"></div>
         </section>
 
         <!-- OUTPUT AREA -->
         <section class="panel" id="output-section" style="display:none;">
-            <h2>Generated Output Snapshot</h2>
+            <h2>Generated Tactical Report</h2>
             <textarea id="text-output" readonly></textarea>
         </section>
 
         <!-- BUTTONS -->
         <footer class="action-footer">
             <div class="btn-group">
-                <button type="button" onclick="logSession()">Save</button>
-                <button type="button" class="btn-accent" onclick="generateReport()">Generate Report</button>
-                <button type="button" onclick="compareSessions()">Compare</button>
+                <button type="button" onclick="logSession()">Save State</button>
+                <button type="button" class="btn-accent" onclick="generateReport()">Generate Prompt</button>
+                <button type="button" onclick="compareSessions()">Compare Progress</button>
                 <button type="button" onclick="exportJSON()">Export JSON</button>
                 <button type="button" onclick="document.getElementById('importFile').click()">Import JSON</button>
-                <button type="button" onclick="copyReport()">Copy Report</button>
+                <button type="button" onclick="copyReport()">Copy Prompt</button>
             </div>
             <input type="file" id="importFile" accept=".json" style="display:none">
         </footer>
