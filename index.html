@@ -3,106 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genshin Endgame Tactical Tracker</title>
+    <title>Genshin Impact Master Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="tracker-wrapper">
         <header class="header-banner">
             <div class="brand">
-                <span class="badge-tag">ENDGAME HUD</span>
-                <h1>TEYVAT PROGRESS TRACKER</h1>
+                <span class="badge-tag">TEYVAT SYSTEM</span>
+                <h1>GENSHIN MASTER TRACKER</h1>
             </div>
             <button type="button" id="theme-toggle" onclick="toggleTheme()">☀️ Light Mode</button>
         </header>
 
-        <!-- DASHBOARD OVERVIEW -->
+        <!-- ACTIVE FOCUS -->
         <section class="panel highlight-panel">
-            <h2>Current Endgame Priority</h2>
-            <div class="grid-2col">
-                <label>Main Focus <input type="text" id="p-main" value="Farm Crimson Witch for Arlecchino"></label>
-                <label>Today's Resin Plan <input type="text" id="p-resin" value="Talent Books: Order (Wednesday/Saturday)"></label>
-                <label>Weekly Boss Targets <input type="text" id="p-weekly" value="Arlecchino (3/3 Left), Narwhal"></label>
-                <label>Next Banner Target <input type="text" id="p-target" value="Mavuika (Pyro Archon) + Signature WE"></label>
+            <h2>Active Priorities</h2>
+            <div class="form-grid grid-2col">
+                <label>Current Main Focus <input type="text" id="p-main" value="Farm Emblem Domain & Finish Fontaine Archon Quest"></label>
+                <label>Today's Resin Plan <input type="text" id="p-resin" value="Talent Books: Freedom (Mondstadt)"></label>
+                <label>Weekly Boss Targets <input type="text" id="p-weekly" value="Apep, Arlecchino, Childe"></label>
+                <label>Next Banner Target <input type="text" id="p-target" value="Mavuika (Pyro Archon) + Signature Weapon"></label>
             </div>
         </section>
 
-        <!-- ACCOUNT STATUS -->
+        <!-- ACCOUNT PROFILE & WORLD PROGRESSION -->
         <section class="panel">
-            <h2>Account Status</h2>
-            <div class="grid-4col">
-                <label>AR Level <input type="number" id="acc-ar" value="58"></label>
+            <h2>Account Profile & Exploration</h2>
+            <div class="form-grid grid-4col">
+                <label>AR Level <input type="number" id="acc-ar" value="56"></label>
                 <label>World Level <input type="number" id="acc-wl" value="8"></label>
                 <label>Server <input type="text" id="acc-server" value="Asia"></label>
-                <label>Teapot Lv <input type="number" id="acc-teapot" value="10"></label>
+                <label>Teapot Level <input type="number" id="acc-teapot" value="10"></label>
+            </div>
+            <div class="form-grid grid-2col" style="margin-top: 12px;">
+                <label>Statue Level (Mond/Liyue/Ina/Sumeru/Fontaine/Natlan) <input type="text" id="exp-statues" value="10/10/10/10/10/8"></label>
+                <label>Reputation Levels <input type="text" id="exp-rep" value="Max across all regions"></label>
+                <label>Unfinished Archon / World Quests <textarea id="exp-quests" rows="2" placeholder="List ongoing quests..."></textarea></label>
+                <label>Map Exploration Progress (%) <textarea id="exp-map" rows="2" placeholder="Fontaine: 85%, Natlan: 40%"></textarea></label>
             </div>
         </section>
 
-        <!-- RESOURCES & RESIN MANAGEMENT -->
+        <!-- RESOURCES & INVENTORY -->
         <section class="panel">
-            <h2>Resources & Resin Inventory</h2>
-            <div class="grid-3col">
-                <label>Primogems <input type="number" id="res-primo" value="14200"></label>
-                <label>Intertwined Fates <input type="number" id="res-fates-event" value="18"></label>
-                <label>Acquaint Fates <input type="number" id="res-fates-standard" value="4"></label>
+            <h2>Resources & Materials</h2>
+            <div class="form-grid grid-3col">
+                <label>Primogems <input type="number" id="res-primo" value="8400"></label>
+                <label>Intertwined Fates <input type="number" id="res-fates-event" value="12"></label>
+                <label>Acquaint Fates <input type="number" id="res-fates-standard" value="5"></label>
                 <label>Current Resin <input type="number" id="res-resin" value="160"></label>
-                <label>Fragile Resin <input type="number" id="res-fragile" value="24"></label>
+                <label>Fragile Resin <input type="number" id="res-fragile" value="18"></label>
                 <label>Transient Resin <input type="number" id="res-transient" value="1"></label>
-                <label>Mora <input type="number" id="res-mora" value="8500000"></label>
-                <label>Hero's Wit <input type="number" id="res-wit" value="420"></label>
-                <label>Crown of Insight <input type="number" id="res-crown" value="5"></label>
-                <label>Crowns Used <input type="number" id="res-crown-used" value="8"></label>
-                <label>Dream Solvent <input type="number" id="res-solvent" value="14"></label>
-                <label>Dust of Azoth <input type="number" id="res-azoth" value="650"></label>
+                <label>Mora <input type="number" id="res-mora" value="4500000"></label>
+                <label>Hero's Wit <input type="number" id="res-wit" value="230"></label>
+                <label>Crown of Insight <input type="number" id="res-crown" value="4"></label>
+                <label>Crowns Used <input type="number" id="res-crown-used" value="3"></label>
+                <label>Dream Solvent <input type="number" id="res-solvent" value="12"></label>
+                <label>Dust of Azoth <input type="number" id="res-azoth" value="400"></label>
             </div>
         </section>
 
-        <!-- PITY & BANNER TRACKER -->
+        <!-- PITY & WISH SYSTEM -->
         <section class="panel">
-            <h2>Pity & Wish Tracker</h2>
-            <div class="grid-2col">
-                <label>Character Event Pity <input type="number" id="pity-char" value="45"></label>
+            <h2>Pity & Wish History</h2>
+            <div class="form-grid grid-2col">
+                <label>Character Event Pity <input type="number" id="pity-char" value="55"></label>
                 <label>Character 50/50 Status <select id="status-char"><option value="50/50">50/50 (Not Guaranteed)</option><option value="Guaranteed">Guaranteed</option></select></label>
-                <label>Weapon Banner Pity <input type="number" id="pity-weapon" value="12"></label>
+                <label>Weapon Banner Pity <input type="number" id="pity-weapon" value="10"></label>
                 <label>Epitomized Path Fate Points <input type="number" id="fate-points" value="0" max="1"></label>
-                <label>Standard Banner Pity <input type="number" id="pity-standard" value="62"></label>
+                <label>Standard Banner Pity <input type="number" id="pity-standard" value="40"></label>
                 <label>Chronicled Wish Pity <input type="number" id="pity-chronicled" value="0"></label>
             </div>
         </section>
 
-        <!-- ENDGAME CONTENT PERFORMANCE -->
+        <!-- ARTIFACT FARMING & STRONGBOX -->
         <section class="panel">
-            <h2>Endgame Performance</h2>
-            <div class="grid-2col">
-                <label>Spiral Abyss Progress <input type="text" id="abyss-stars" value=" Floor 12 (36/36 Stars)"></label>
-                <label>Abyss Team 1 <input type="text" id="abyss-t1" value="Arlecchino, Yelan, Bennett, Kazuha"></label>
-                <label>Abyss Team 2 <input type="text" id="abyss-t2" value="Alhaitham, Nahida, Yae Miko, Zhongli"></label>
-                <label>Imaginarium Theater Level <select id="it-diff"><option value="Visionary">Visionary Mode</option><option value="Hard">Hard Mode</option><option value="Normal">Normal Mode</option></select></label>
-                <label>Imaginarium Stars <input type="text" id="it-stars" value=" 10/10 Fantasia Flowers"></label>
-                <label>Theater Element Pool <input type="text" id="it-elements" value="Pyro / Hydro / Anemo"></label>
+            <h2>Artifact Management</h2>
+            <div class="form-grid grid-2col">
+                <label>Active Domain Farming Target <input type="text" id="art-domain" value="Domain of Blessing: Deepwood / Gilded"></label>
+                <label>Strongbox Priority Set <input type="text" id="art-strongbox" value="Emblem of Severed Fate"></label>
+                <label>Fodder / XP Stock Status <select id="art-fodder"><option value="High">High (Abundant Fodder)</option><option value="Medium">Medium</option><option value="Low">Low (Need Artifact EXP)</option></select></label>
+                <label>Main Artifact Sets Needed <input type="text" id="art-needed" value="4pc Obsidian Codex, 4pc Golden Troupe"></label>
             </div>
         </section>
 
-        <!-- SQUAD & ARTIFACT BUILDER -->
+        <!-- COMBAT & ENDGAME -->
         <section class="panel">
-            <h2>Active Build Priority</h2>
+            <h2>Combat & Challenge Content</h2>
+            <div class="form-grid grid-2col">
+                <label>Spiral Abyss Record <input type="text" id="abyss-stars" value="Floor 12 (33/36 Stars)"></label>
+                <label>Abyss Team 1 <input type="text" id="abyss-t1" value="Raiden, Yelan, Xiangling, Bennett"></label>
+                <label>Abyss Team 2 <input type="text" id="abyss-t2" value="Alhaitham, Nahida, Kuki Shinobu, Xingqiu"></label>
+                <label>Imaginarium Theater Level <select id="it-diff"><option value="Hard">Hard Mode</option><option value="Visionary">Visionary Mode</option><option value="Normal">Normal Mode</option></select></label>
+                <label>Imaginarium Stars <input type="text" id="it-stars" value="8 Fantasia Flowers"></label>
+                <label>Ready Roster Count (Lv80+) <input type="number" id="it-ready-count" value="18"></label>
+            </div>
+        </section>
+
+        <!-- CHARACTER ROSTER & BUILD TARGETS -->
+        <section class="panel">
+            <h2>Roster & Build Tracker</h2>
             <div class="add-char-block">
-                <div class="grid-3col">
-                    <label>Character Name <input type="text" id="b-name" placeholder="Arlecchino"></label>
+                <div class="form-grid grid-3col">
+                    <label>Character Name <input type="text" id="b-name" placeholder="Raiden Shogun"></label>
                     <label>Level / Constellation <input type="text" id="b-const" value="Lv 90 / C0"></label>
-                    <label>Weapon <input type="text" id="b-weapon" value="Crimson Moon's Semblance R1"></label>
-                    <label>Artifact Set <input type="text" id="b-artifact" value="4pc Fragment of Harmonic Whimsy"></label>
-                    <label>Stats (CR / CD / ER / EM) <input type="text" id="b-stats" value="75.4% / 210.2% / 120% / 80"></label>
-                    <label>Talent Levels <input type="text" id="b-talents" value="10 / 9 / 9"></label>
+                    <label>Weapon <input type="text" id="b-weapon" value="Engulfing Lightning R1"></label>
+                    <label>Artifact Set <input type="text" id="b-artifact" value="4pc Emblem of Severed Fate"></label>
+                    <label>Stats (CR / CD / ER / EM) <input type="text" id="b-stats" value="65% / 140% / 270% / 50"></label>
+                    <label>Talent Levels <input type="text" id="b-talents" value="6 / 9 / 10"></label>
                 </div>
-                <button type="button" class="btn-accent" style="margin-top: 12px; width: 100%;" onclick="addBuildDetail()">+ Add Build Target</button>
+                <button type="button" class="btn-accent" style="margin-top: 12px; width: 100%;" onclick="addBuildDetail()">+ Add Character Build</button>
             </div>
             <div id="build-list" class="roster-list-container"></div>
         </section>
 
         <!-- OUTPUT AREA -->
         <section class="panel" id="output-section" style="display:none;">
-            <h2>Generated Tactical Report</h2>
+            <h2>Generated Master Prompt</h2>
             <textarea id="text-output" readonly></textarea>
         </section>
 
