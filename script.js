@@ -204,6 +204,7 @@ Chenyu Vale: ${document.getElementById('e-chenyu').value}%
 Remuria: ${document.getElementById('e-remuria').value}%
 Natlan: ${document.getElementById('e-natlan').value}%
 Nod Krai: ${document.getElementById('e-nodkrai').value}%
+Snezhnaya: ${document.getElementById('e-snezhnaya').value}%
 
 Adventure Handbook: ${document.getElementById('e-handbook').value}
 
